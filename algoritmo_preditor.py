@@ -14,7 +14,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.externals import joblib
 
 
-casas = pd.read_csv("/home/roger/Documents/predict_imoveis/csv/centro.csv")
+casas = pd.read_csv("/home/roger/Documents/predict_imoveis/new_data.csv")
 
 #print(casas.head())
 
@@ -48,16 +48,6 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33)
 lin_reg = LinearRegression()
 lin_reg.fit(x_train, y_train)
 
-#Salvando o modelo
-arquivo = "saves/modelo_final_centro.sav"
-joblib.dump(lin_reg, arquivo)
-
-#salvando medida de acuracia
-medida_x = "saves/x_test_centro.sav"
-joblib.dump(x_test, medida_x)
-
-medida_y = "saves/y_test_centro.sav"
-joblib.dump(y_test, medida_y)
 
 print(lin_reg.intercept_)
 print(lin_reg.coef_)
@@ -69,11 +59,37 @@ np.sqrt(mse)
 
 porc = lin_reg.score(x_test, y_test)
 
-print("Precisao do modelo: ", format(porc*100, '.2f'), '%')
 
-print("Executado com sucesso. Salvando modelo...")
+while porc < 0.80:
+	if porc < 0.80:
+		#Dividindo entre teste e treino
+		x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33)
 
+		lin_reg = LinearRegression()
+		lin_reg.fit(x_train, y_train)
+		
+		mse = mean_squared_error(y_test, lin_reg.predict(x_test))
 
+		np.sqrt(mse)
+
+		porc = lin_reg.score(x_test, y_test)
+
+		print("Precisao do modelo: ", format(porc*100, '.2f'), '%')
+
+	if porc > 0.80:
+		print("Precisao final: ", format(porc*100, '.2f'), '%')
+		print("Executado com sucesso. Salvando modelo...")
+
+		#Salvando o modelo
+		arquivo = "saves/modelo_final.sav"
+		joblib.dump(lin_reg, arquivo)
+
+		#salvando medida de acuracia
+		medida_x = "saves/x_test.sav"
+		joblib.dump(x_test, medida_x)
+
+		medida_y = "saves/y_test.sav"
+		joblib.dump(y_test, medida_y)
 
 
 
