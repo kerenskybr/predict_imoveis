@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+	<form method="POST" action="">
+		<div class="grid-x">					<div class="cell auto">
+				
+			</div>
+
+			<div class="cell small-4 content-section">
+			<h4>Registre-se</h4>
+			<fieldset class="cell">
+				<label>Nome
+          		<input type="text" placeholder="Crie seu Nome de Usuário">
+        		</label>
+				</fieldset>
+
+				<fieldset class="cell">
+				<label>Senha
+          		<input type="text" placeholder="Crie uma senha">
+        		</label>
+
+        		<label>Confirmação de senha
+          		<input type="text" placeholder="Repita a senha criada">
+        		</label>
+
+				</fieldset>
+				
+
+				<fieldset class="cell">
+				
+				<input type="submit" class="button success" value="Registrar">					
+
+				<input type="submit" class="button hollow success" value="Voltar">
+
+				
+				<small class="text-muted">
+				<p>Já possui conta? <a href="#">Login</a>
+				</small>
+
+	
+				</fieldset>
+				</div>
+				<div class="cell auto">
+				
+			</div>
+
+		</div>
+	</form>
+{% endblock content %}

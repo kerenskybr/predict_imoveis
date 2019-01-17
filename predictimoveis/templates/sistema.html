@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="grid-x">		
+	<div class="cell auto">
+		
+	</div>			
+	<div class="cell small-3 content-section">
+		<h6>Digite a quantidade de:</h6>
+
+		<fieldset class="cell">
+		<label>Dormitórios:
+         <input type="text" placeholder="Exemplo: 4">
+         </label>
+		 </fieldset>
+
+
+		<fieldset class="cell">
+		<label>Banheiros/Lavabos:
+         <input type="text" placeholder="Exemplo: 2">
+         </label>
+		 </fieldset>
+
+
+		<fieldset class="cell">
+		<label>Garagem/Abrigos:
+         <input type="text" placeholder="Exemplo: 2">
+         </label>
+		 </fieldset>
+
+
+		<fieldset class="cell">
+		<label>Área Total Costruída:
+         <input type="text" placeholder="Exemplo: 128.45">
+         </label>
+		 </fieldset>
+		 <fieldset class="cell">
+		 	<input type="submit" class="button expanded secondary" value="Gerar Resultado">	
+
+		 </fieldset>
+
+	</div>
+
+
+	<div class="cell small-3 content-section">
+		<h6>Valor estimado: </h6>
+		<br>
+		<h6>Precisão de: </h6>
+		<br>
+		<fieldset class="cell">
+			<h6>O que achou do resultado?</h6>
+
+
+		</fieldset>
+
+		<fieldset class="cell">
+				
+				<input type="submit" class="button expanded hollow success" value="Satisfatório">					
+
+				<input type="submit" class="button expanded hollow warning" value="Impreciso">	
+				</fieldset>
+
+	</div> <!-- div cell small-4 contente-section-->
+
+	<div class="cell small-3 content-section">
+		<h6>Histórico de Pesquisas</h6>
+
+	</div>
+
+	<div class="cell auto">
+		
+	</div>	
+</div>
+
+
+
+
+{% endblock content %}
