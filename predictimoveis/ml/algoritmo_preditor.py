@@ -1,11 +1,12 @@
 #Arquivo responsavel por treinar o modelo
 #e salvar os dados de treino e acuracia
-
+#Posteriormente será movido para uma rota
 
 import pandas as pd
 import numpy as np
 
 import seaborn as sns
+
 import matplotlib.pyplot as plt
 
 from sklearn.linear_model import LinearRegression
@@ -14,7 +15,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.externals import joblib
 
 
-casas = pd.read_csv("/home/roger/Documents/predict_imoveis/new_data.csv")
+casas = pd.read_csv("/home/roger/Documents/predict_imoveis/predictimoveis/csv/new_data.csv")
 
 #print(casas.head())
 

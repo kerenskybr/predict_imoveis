@@ -6,9 +6,9 @@ from sklearn.metrics import mean_squared_error
 import numpy as np
 
 
-carrega_modelo = joblib.load('saves/modelo_final.sav')
-medida_x = joblib.load('saves/x_test.sav')
-medida_y = joblib.load('saves/y_test.sav')
+carrega_modelo = joblib.load('../saves/modelo_final.sav')
+medida_x = joblib.load('../saves/x_test.sav')
+medida_y = joblib.load('../saves/y_test.sav')
 
 dorms = int(input('Digite a quantidade de dormitórios: '))
 banho = int(input('Digite a quantidade de banhos: '))

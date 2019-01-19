@@ -5,7 +5,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    	<title>Predict-imóveis</title>
-    <link rel="stylesheet" href="../static/meu.css" />
+<!-- Meu css personalizado -->
+<link rel="stylesheet" href="../static/meu.css" />
 <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/css/foundation-float.min.css" integrity="sha256-G4aYgUXr4BBL+Jq0iD/76u5e/4+BU5W/V+/g4QcCM3Y= sha384-49P837FYKAAlOm+zmLeYGIqzDRYRDy4zdAG3jyzqcVwnnJGh0MOxajp3JJlTDnh7 sha512-22kUT1tNth37k4XYOoLoAITcKFHtnjviE0XOmpeY4Ng4xo4rCODl+F90jHJpX4MVIWB1cpMNI04GoHi7Y8hZmw==" crossorigin="anonymous">
 
@@ -17,14 +18,14 @@
 </head>
 <body>
 
-<div class="grid-container fluid">
+<div class="grid-container fluid cor-home">
   <div class="grid-x grid-margin-x">
-    <div class="cell small-2">
+    <div class="cell small-3">
     	
     	Logotipo
 
     </div>
-    <div class="cell small-8">
+    <div class="cell medium-6">
     	
     	<ul class="menu menu-hover-lines">
     		
@@ -37,24 +38,22 @@
 		</ul>
 		
     </div>
-    <div class="cell small-2">
+
+    <div class="cell small-3">
     	<ul class="menu menu-hover-lines">
-    	<li><a href="#">Registro</a></li>	
-		<li><a href="#">Login</a></li>
+    	<li><a href="#">Logado como <b>Fulano</b>, via <b>Imobiliária Tal</b> </a></li>	
 	</ul>
     </div>
   </div>
 </div>
 
 
+{% block content %}
 
-
-
+{% endblock content %}
 
 <footer class="footer">
-  <div class="footer">
-    <p>Predict Imóveis - 2019</p>
-  </div>
+    Predict Imóveis - 2019 - Todos direitos reservados.
 </footer>
 
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
