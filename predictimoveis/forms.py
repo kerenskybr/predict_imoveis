@@ -15,8 +15,8 @@ class FormRegistro(FlaskForm):
 	submit = SubmitField('Registrar')
 
 class FormSistema(FlaskForm):
-	dorms = IntegerField('Dormitórios', validators=[DataRequired(), Length(min=0, max=10)])
-	banho = IntegerField('Banhos', validators=[DataRequired(), Length(min=0, max=10)])
-	vagas = IntegerField('Vagas', validators=[DataRequired(), Length(min=0, max=4)])
-	area = FloatField('Área Total', validators=[DataRequired(),Length(min=10, max=1000)])
+	dorms = IntegerField('Dormitórios', validators=[DataRequired()])
+	banhos = IntegerField('Banhos', validators=[DataRequired()])
+	vagas = IntegerField('Vagas', validators=[DataRequired()])
+	area = FloatField('Área Total', validators=[DataRequired()])
 	submit = SubmitField('Calcular')

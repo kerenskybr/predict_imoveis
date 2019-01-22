@@ -1,70 +1,118 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<style>
+.fa {
+  font-size: 25px;
+  cursor: pointer;
+  user-select: none;
+}
 
+.fa:hover {
+  color: green;
+}
+</style>
 <div class="cell">
 	<br>
 </div>
 
-<div class="grid-x">		
+<div class="grid-x" >		
 	<div class="cell auto">
 		
 	</div>			
+	
+        
+	<form class="cell small-3 content-section"  method="POST">
+		{{ form.hidden_tag() }}
+		
+
+		<i class="fas fa-city"></i>
+		Cidade
+  		<select>
+    	<option value="husker">Capão da Canoa</option>
+    
+  		</select>
+		
+
+		<h6><b>Digite a quantidade de:</b></h6>
+
+		<fieldset class="cell">
+		<i class="fas fa-bed"></i>
+		Dormitórios:
+         
+         {{ form.dorms(type="text", placeholder="Exemplo: 4") }}
+        
+		 </fieldset>
+
+
+		<fieldset class="cell">
+		<i class="fas fa-toilet"></i>
+        Banheiros/Lavabos:
+         {{ form.banhos(type="text", placeholder="Exemplo: 2") }}
+         
+		 </fieldset>
+
+
+		<fieldset class="cell">
+			<i class="fas fa-warehouse"></i>
+			Garagens/Abrigos:
+         {{ form.vagas(type="text", placeholder="Exemplo: 2")}}
+
+		 </fieldset>
+
+
+		<fieldset class="cell">
+		<i class="fas fa-chart-area"></i>
+		Área Total Costruída:
+         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
+         
+		 </fieldset>
+
+
+		 <fieldset class="cell">
+		 	
+		 	{{ form.submit(class="button expanded secondary", value="Gerar Resultado") }}
+		 </fieldset>
+
+	</form>
+
+
 	<div class="cell small-3 content-section">
-		<h6>Digite a quantidade de:</h6>
+		<h6>Valor estimado: <b>{{ estimado }}</b></h6>
+		<br>
+		<h6>Precisão de: <b>{{ precisao }}</b> </h6>
+		<br>
 
-		<fieldset class="cell">
-		<label>Dormitórios:
-         <input type="text" placeholder="Exemplo: 4">
-         </label>
-		 </fieldset>
+		{% if estimado != 0 %}
 
+		<h6>O que achou do resultado?</h6>
 
-		<fieldset class="cell">
-		<label>Banheiros/Lavabos:
-         <input type="text" placeholder="Exemplo: 2">
-         </label>
-		 </fieldset>
+		<i onclick="satis(this)" class="fa fa-thumbs-up"></i>
+
+		<p id="obrigado"></p>
 
 
-		<fieldset class="cell">
-		<label>Garagem/Abrigos:
-         <input type="text" placeholder="Exemplo: 2">
-         </label>
-		 </fieldset>
+		<i onclick="impre(this)" class="fa fa-thumbs-down"></i>
 
+		<div id="myDIV">
+			aa
+		</div>
+		<fieldset class="medium-2 cell">
 
-		<fieldset class="cell">
-		<label>Área Total Costruída:
-         <input type="text" placeholder="Exemplo: 128.45">
-         </label>
+			Valor:
+        
+         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
+
 		 </fieldset>
 		 <fieldset class="cell">
-		 	<input type="submit" class="button expanded secondary" value="Gerar Resultado">	
 
+			Bairro:
+        
+         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
+         
 		 </fieldset>
 
-	</div>
-
-
-	<div class="cell small-3 content-section">
-		<h6>Valor estimado: </h6>
-		<br>
-		<h6>Precisão de: </h6>
-		<br>
-		<fieldset class="cell">
-			<h6>O que achou do resultado?</h6>
-
-
-		</fieldset>
-
-		<fieldset class="cell expanded button-group">
-				
-				<input type="submit" class="button hollow success" value="Satisfatório">					
-
-				<input type="submit" class="button hollow warning" value="Impreciso">	
-				</fieldset>
-
+		{% endif %}
 	</div> <!-- div cell small-4 contente-section-->
 
 	<div class="cell small-3 content-section">
@@ -75,11 +123,20 @@
 	</div>
 
 	<div class="cell auto">
-		
+
 	</div>	
 </div>
 
+<script type="text/javascript">
 
-
-
+function satis() {
+  var x = document.getElementById("obrigado");
+    if (x.innerHTML === "none") {
+    x.innerHTML = "none";
+  } else {
+	x.innerHTML =  "<br>" +  "<i class='fas fa-glass-cheers'></i> Obrigado!"  {{ clear }};
+  }
+ }
+</script>
 {% endblock content %}
+

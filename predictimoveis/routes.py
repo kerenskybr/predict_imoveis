@@ -1,4 +1,6 @@
 import os
+import io
+import locale
 
 from predictimoveis import app
 from predictimoveis.forms import FormRegistro, FormSistema
@@ -10,8 +12,7 @@ from sklearn.metrics import mean_squared_error
 
 import numpy as np
 
-
-
+np.set_printoptions(formatter={'float': '{: 0.2f}'.format})
 
 @app.route("/")
 def home():
@@ -22,7 +23,12 @@ def registro():
 	form = FormRegistro()
 	return render_template("registro.html", form=form)
 
-@app.route("/sistema")
+
+
+def clear():
+	return redirect(url_for('sistema'))
+
+@app.route("/sistema", methods=['GET', 'POST'])
 def sistema():
 
 	carrega_modelo = joblib.load(os.path.join(app.root_path, 'saves/modelo_final.sav'))	
@@ -31,8 +37,41 @@ def sistema():
 
 	form = FormSistema()
 
+	estimado = 0
+
+	precisao = 0
+
 	if form.validate_on_submit():
-		#return redirect('/success')
+
+		dorms = int(form.dorms.data)
+		banhos = int(form.banhos.data)
+		vagas = int(form.vagas.data)
+		area = float(form.area.data)
+
+		areas = [[dorms, banhos, vagas, area]]
+		
+		a = carrega_modelo.predict(areas)
+		print(a)
+		#estimado2 = (str(a)[1:-1])
+		#estimado = ('R$ ') + (''.join(map(str, a)))
+	
+		#estimado = locale.format("%1.2f",a,1)
+
+		locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+		
+		valor = locale.currency(a, grouping=True, symbol=None)
+		
+		estimado = ('R$ %s' % valor)
 
 
-		return render_template("sistema.html", form=form)
+		mse = mean_squared_error(medida_y, carrega_modelo.predict(medida_x))
+
+		np.sqrt(mse)
+
+		porc = carrega_modelo.score(medida_x, medida_y)
+		
+		precisao = format(porc*100, '.2f') + '%'
+		#flash('Editado com sucesso!')
+
+
+	return render_template("sistema.html", form=form, estimado=estimado, precisao=precisao)
