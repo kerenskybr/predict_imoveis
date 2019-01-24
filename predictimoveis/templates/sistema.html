@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
 <style>
 .fa {
   font-size: 25px;
@@ -87,31 +88,25 @@
 
 		<h6>O que achou do resultado?</h6>
 
-		<i onclick="satis(this)" class="fa fa-thumbs-up"></i>
+		<i onclick="satis(this)" class="fa fa-thumbs-up" id="likeBotao"></i>
 
 		<p id="obrigado"></p>
 
+		<i onclick="impre(this)" class="fa fa-thumbs-down" id="dislikeBotao"></i>
 
-		<i onclick="impre(this)" class="fa fa-thumbs-down"></i>
-
-		<div id="myDIV">
-			aa
-		</div>
-		<fieldset class="medium-2 cell">
+		<div id="dislike">
+			<small>Por favor preencha os valores abaixo. Assim você estará colaborando para que o sistema
+			aprenda a emitir dados mais precisos. Obrigado!</small>
 
 			Valor:
         
-         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
+        <input type="text" placeholder=".medium-6.cell">
 
-		 </fieldset>
-		 <fieldset class="cell">
 
 			Bairro:
         
-         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
-         
-		 </fieldset>
-
+        <input type="text" placeholder=".medium-6.cell">
+        </div>
 		{% endif %}
 	</div> <!-- div cell small-4 contente-section-->
 
@@ -129,14 +124,49 @@
 
 <script type="text/javascript">
 
+document.getElementById("dislike").style.display="none";
+
 function satis() {
   var x = document.getElementById("obrigado");
     if (x.innerHTML === "none") {
     x.innerHTML = "none";
   } else {
-	x.innerHTML =  "<br>" +  "<i class='fas fa-glass-cheers'></i> Obrigado!"  {{ clear }};
+	x.innerHTML =  "<br>" +  "<i class='fas fa-glass-cheers'></i> Obrigado!";
+	document.getElementById("dislikeBotao").style.display="none";
   }
  }
+
+function impre() {
+  var x = document.getElementById("dislikeBotao");
+    if (x.innerHTML === "none") {
+    x.innerHTML = "none";
+  } else {
+	document.getElementById("dislike").style.display="block";
+	document.getElementById("likeBotao").style.display="none";
+  }
+ }
+
+
 </script>
 {% endblock content %}
 
+<!--
+
+document.getElementById("your form id").style.display="none";
+
+
+document.getElementById("your form id").style.display="block";
+
+
+function asd(a)
+{
+    if(a==1)
+    document.getElementById("asd").style.display="none";
+    else
+    document.getElementById("asd").style.display="block";
+}
+
+
+<form id="asd">form </form>
+<button onclick="asd(1)">Hide</button>
+<button onclick="asd(2)">Show</button>
