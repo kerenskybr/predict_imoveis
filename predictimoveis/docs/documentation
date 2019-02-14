@@ -8,7 +8,6 @@ Essa documentação compreende os aspectos técnicos do sistema.
 
 #### algoritmo_preditor.py
 Diretório:
-
 /predictimoveis/ml/algoritmo_preditor.py
 
 Este arquivo contém o algoritmo responsável por verificar a base de dados, eliminar valores nulos, com problemas e outliers, verificar a correlação entre as classes, treinar e salvar o modelo

@@ -5,28 +5,29 @@ import locale
 from predictimoveis import app
 from predictimoveis.forms import FormRegistro, FormSistema
 
-from flask import render_template, url_for
+from flask import render_template, url_for, flash
 
 from sklearn.externals import joblib
 from sklearn.metrics import mean_squared_error
 
 import numpy as np
 
-np.set_printoptions(formatter={'float': '{: 0.2f}'.format})
+#np.set_printoptions(formatter={'float': '{: 0.2f}'.format})
+
 
 @app.route("/")
 def home():
 	return render_template("home.html")
+
 
 @app.route("/registro")
 def registro():
 	form = FormRegistro()
 	return render_template("registro.html", form=form)
 
-
-
-def clear():
-	return redirect(url_for('sistema'))
+@app.route("/login")
+def login():
+	return render_template("login.html")
 
 @app.route("/sistema", methods=['GET', 'POST'])
 def sistema():
@@ -51,11 +52,6 @@ def sistema():
 		areas = [[dorms, banhos, vagas, area]]
 		
 		a = carrega_modelo.predict(areas)
-		print(a)
-		#estimado2 = (str(a)[1:-1])
-		#estimado = ('R$ ') + (''.join(map(str, a)))
-	
-		#estimado = locale.format("%1.2f",a,1)
 
 		locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 		
@@ -71,7 +67,7 @@ def sistema():
 		porc = carrega_modelo.score(medida_x, medida_y)
 		
 		precisao = format(porc*100, '.2f') + '%'
-		#flash('Editado com sucesso!')
+		flash(f'Previsão gerada com sucesso!', 'success')
 
 
 	return render_template("sistema.html", form=form, estimado=estimado, precisao=precisao)

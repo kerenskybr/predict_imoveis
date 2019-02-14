@@ -8,11 +8,15 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_login import current_user, AnonymousUserMixin
 
 class FormRegistro(FlaskForm):
-	nome = StringField('Nome Fantasia', validators=[DataRequired(), Length(min=5, max=20)])
+	nome = StringField('Nome Fantasia, nome imobiliária', validators=[DataRequired(), Length(min=5, max=20)])
 	email = StringField('Email',validators=[DataRequired(), Email()])
 	senha = PasswordField('Senha', validators=[DataRequired()])
 	confirma_senha = PasswordField('Repetir Senha', validators=[DataRequired(), EqualTo('senha')])
 	submit = SubmitField('Registrar')
+
+class FormLogin(FlaskForm):
+	pass
+
 
 class FormSistema(FlaskForm):
 	dorms = IntegerField('Dormitórios', validators=[DataRequired()])

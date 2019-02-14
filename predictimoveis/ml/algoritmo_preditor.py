@@ -71,9 +71,14 @@ while porc < 0.80:
 		
 		mse = mean_squared_error(y_test, lin_reg.predict(x_test))
 
+		print(x_test.shape())
+		#print(y_test.shape())
+
 		np.sqrt(mse)
 
 		porc = lin_reg.score(x_test, y_test)
+
+
 
 		print("Precisao do modelo: ", format(porc*100, '.2f'), '%')
 
@@ -91,42 +96,3 @@ while porc < 0.80:
 
 		medida_y = "saves/y_test.sav"
 		joblib.dump(y_test, medida_y)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
