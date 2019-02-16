@@ -23,4 +23,5 @@ class FormSistema(FlaskForm):
 	banhos = IntegerField('Banhos', validators=[DataRequired()])
 	vagas = IntegerField('Vagas', validators=[DataRequired()])
 	area = FloatField('Área Total', validators=[DataRequired()])
+	desc = StringField('Descrição')
 	submit = SubmitField('Calcular')

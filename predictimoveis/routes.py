@@ -23,6 +23,17 @@ def home():
 @app.route("/registro")
 def registro():
 	form = FormRegistro()
+
+	if form.validate_on_submit():
+
+
+
+		nome = StringField('Nome Fantasia, nome imobiliária', validators=[DataRequired(), Length(min=5, max=20)])
+		email = StringField('Email',validators=[DataRequired(), Email()])
+		senha = PasswordField('Senha', validators=[DataRequired()])
+		confirma_senha = PasswordField('Repetir Senha', validators=[DataRequired(), EqualTo('senha')])
+		submit 
+
 	return render_template("registro.html", form=form)
 
 @app.route("/login")
@@ -48,6 +59,7 @@ def sistema():
 		banhos = int(form.banhos.data)
 		vagas = int(form.vagas.data)
 		area = float(form.area.data)
+		desc = form.desc.data
 
 		areas = [[dorms, banhos, vagas, area]]
 		

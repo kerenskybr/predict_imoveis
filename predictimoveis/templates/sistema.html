@@ -13,72 +13,79 @@
   color: green;
 }
 </style>
-<div class="cell">
-	<br>
-</div>
+
+
 
 <div class="grid-x" >		
-	<div class="cell auto">
-		
-	</div>			
+	
 	
         
-	<form class="cell small-3 content-section"  method="POST">
+	<form class="cell small-4 content-section"  method="POST">
 		{{ form.hidden_tag() }}
 		
 
 		<i class="fas fa-city"></i>
 		Cidade
   		<select>
-    	<option value="husker">Capão da Canoa</option>
+    	<option value="1">Capão da Canoa</option>
     
   		</select>
 		
 
 		<h6><b>Digite a quantidade de:</b></h6>
 
-		<fieldset class="cell">
-		<i class="fas fa-bed"></i>
-		Dormitórios:
-         
-         {{ form.dorms(type="text", placeholder="Exemplo: 4") }}
-        
-		 </fieldset>
-
-
-		<fieldset class="cell">
-		<i class="fas fa-toilet"></i>
-        Banheiros/Lavabos:
-         {{ form.banhos(type="text", placeholder="Exemplo: 2") }}
-         
-		 </fieldset>
-
-
-		<fieldset class="cell">
-			<i class="fas fa-warehouse"></i>
-			Garagens/Abrigos:
-         {{ form.vagas(type="text", placeholder="Exemplo: 2")}}
-
-		 </fieldset>
-
-
-		<fieldset class="cell">
-		<i class="fas fa-chart-area"></i>
-		Área Total Costruída:
-         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
-         
-		 </fieldset>
-
-
-		 <fieldset class="cell">
+		<div class="grid-x grid-padding-x">
+		 <div class="small-4 cell">
 		 	
-		 	{{ form.submit(class="button expanded secondary", value="Gerar Resultado") }}
+      		<label for="middle-label" class="text-right middle"><i class="fas fa-bed"></i> Dormitórios</label>
+    		</div>
+   			 <div class="small-8 cell">
+     		 {{ form.dorms(type="number", placeholder="Exemplo: 4") }}
+   		 </div>
+   		 </div>
+
+
+
+
+
+		<fieldset class="cell"><i class="fas fa-toilet"></i>
+        Banheiros/Lavabos:
+         {{ form.banhos(type="number", placeholder="Exemplo: 2") }}
+         
+		 </fieldset>
+
+
+		<fieldset class="cell"><i class="fas fa-warehouse"></i>
+			Garagens/Abrigos:
+         {{ form.vagas(type="number", placeholder="Exemplo: 2")}}
+
+		 </fieldset>
+
+
+		<fieldset class="cell"><i class="fas fa-chart-area"></i>
+		Área Total Costruída:
+         {{ form.area(type="number", placeholder="Exemplo: 128.45") }}
+         
+		 </fieldset>
+
+		 <fieldset class="cell"><i class="fas fa-align-justify"></i>
+		Descrição:
+         {{ form.area(type="text", placeholder="Campo Opcional. Ex: casa do joão") }}
+         
+		 </fieldset>
+
+
+		 <fieldset class="cell button-group expanded">
+			
+			<input type="submit" class="button success" value="Nova Consulta">
+			{{ form.submit(class="button warning", value="Gerar Resultado") }}
+
 		 </fieldset>
 
 	</form>
 
 
-	<div class="cell small-3 content-section">
+	<div class="cell small-4 content-section">
 		<h6>Valor estimado: <b>{{ estimado }}</b></h6>
 		<br>
 		<h6>Precisão de: <b>{{ precisao }}</b> </h6>
@@ -110,16 +117,13 @@
 		{% endif %}
 	</div> <!-- div cell small-4 contente-section-->
 
-	<div class="cell small-3 content-section">
+	<div class="cell small-4 content-section">
 		<h6>Histórico de Pesquisas</h6>
 		<li>aaaa</li>
 		<li>aaaa</li>
 		<li>aaaa</li>
 	</div>
-
-	<div class="cell auto">
-
-	</div>	
+	
 </div>
 
 <script type="text/javascript">
@@ -148,25 +152,6 @@ function impre() {
 
 
 </script>
-{% endblock content %}
-
-<!--
-
-document.getElementById("your form id").style.display="none";
-
-
-document.getElementById("your form id").style.display="block";
-
-
-function asd(a)
-{
-    if(a==1)
-    document.getElementById("asd").style.display="none";
-    else
-    document.getElementById("asd").style.display="block";
-}
-
-
-<form id="asd">form </form>
-<button onclick="asd(1)">Hide</button>
-<button onclick="asd(2)">Show</button>
+	
+		
+	{% endblock content %}
