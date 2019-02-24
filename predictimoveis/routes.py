@@ -2,8 +2,9 @@ import os
 import io
 import locale
 
-from predictimoveis import app
+from predictimoveis import db, app
 from predictimoveis.forms import FormRegistro, FormSistema
+from predictimoveis.models import Usuarios, Colaboradores, Consultas, DadosNovos
 
 from flask import render_template, url_for, flash
 

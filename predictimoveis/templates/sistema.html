@@ -37,22 +37,39 @@
 		<div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
 		 	
-      		<label for="middle-label" class="text-right middle"><i class="fas fa-bed"></i> Dormitórios</label>
+      		<label for="middle-label" class="text-right middle"><i class="fas fa-bed"></i> Dormitórios:</label>
     		</div>
    			 <div class="small-8 cell">
      		 {{ form.dorms(type="number", placeholder="Exemplo: 4") }}
    		 </div>
    		 </div>
 
-
-
-
-
-		<fieldset class="cell"><i class="fas fa-toilet"></i>
-        Banheiros/Lavabos:
-         {{ form.banhos(type="number", placeholder="Exemplo: 2") }}
+   		 <div class="grid-x grid-padding-x">
+		 <div class="small-4 cell">
+		 	
+      		<label for="middle-label" class="text-right middle"><i class="fas fa-toilet"></i> Banheiros:</label>
+    		</div>
+   			 <div class="small-8 cell">
+     		 {{ form.banhos(type="number", placeholder="Exemplo: 2") }}
          
-		 </fieldset>
+   		 </div>
+   		 </div>
+
+
+   		 <div class="grid-x grid-padding-x">
+		 <div class="small-4 cell">
+		 	
+      		<label for="middle-label" class="text-right middle"><i class="fas fa-warehouse"></i> Abrigos:</label>
+    		</div>
+   			 <div class="small-8 cell">
+     		 {{ form.banhos(type="number", placeholder="Exemplo: 2") }}
+     		 <p class="help-text">Lavabos entram na contagem como +1.</p>
+         
+   		 </div>
+   		 </div>
+
+
+
 
 
 		<fieldset class="cell"><i class="fas fa-warehouse"></i>

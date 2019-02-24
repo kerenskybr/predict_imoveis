@@ -1,7 +1,7 @@
 from datetime import datetime
-from predictimoveis import db, app
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from predictimoveis import db, login_manager, app
 from flask_login import UserMixin
-
 
 
 class Usuarios(db.Model, UserMixin):
@@ -14,7 +14,7 @@ class Usuarios(db.Model, UserMixin):
 	def _repr__(self):
 		return f"Usuarios('{self.nome}', '{self.email}', '{self.senha}')"
 
-class Colaboradores(db.Model)
+class Colaboradores(db.Model):
 	__tablename__ = 'colaboradores'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	nome = db.Column(db.String(30), unique=True, nullable=False)
@@ -50,4 +50,4 @@ class DadosNovos(db.Model):
 	cidade = db.Column(db.String(60), nullable=False)
 
 	def _repr__(self):
-		return f"DadosNovos('{self.bairro}','{self.dorms}','{self.banhos}','{self.vagas}','{self.area}','{self.cond}')"
+		return f"DadosNovos('{self.bairro}','{self.dorms}','{self.banhos}','{self.vagas}','{self.area}','{self.cond}', '{self.valor}', '{self.cidade}')"
