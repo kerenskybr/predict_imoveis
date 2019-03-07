@@ -47,11 +47,11 @@
    		 <div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
 		 	
-      		<label for="middle-label" class="text-right middle"><i class="fas fa-toilet"></i> Banheiros:</label>
+      		<label for="middle-label" class="text-right middle"><i class="fas fa-toilet"></i> Banheiros/ Lavabos:</label>
     		</div>
    			 <div class="small-8 cell">
      		 {{ form.banhos(type="number", placeholder="Exemplo: 2") }}
-         
+         	<p class="help-text">Lavabos entram na contagem como +1.</p>
    		 </div>
    		 </div>
 
@@ -59,54 +59,85 @@
    		 <div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
 		 	
-      		<label for="middle-label" class="text-right middle"><i class="fas fa-warehouse"></i> Abrigos:</label>
+      		<label for="middle-label" class="text-right middle"><i class="fas fa-warehouse"></i> Abrigos/ Garagens:</label>
     		</div>
    			 <div class="small-8 cell">
-     		 {{ form.banhos(type="number", placeholder="Exemplo: 2") }}
-     		 <p class="help-text">Lavabos entram na contagem como +1.</p>
+     		 {{ form.vagas(type="number", placeholder="Exemplo: 2") }}
+     		 
          
    		 </div>
    		 </div>
 
 
+   		  <div class="grid-x grid-padding-x">
+		 <div class="small-4 cell">
+		
+		 	<label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Área Total Costruída:</label>
+    		</div>
+   			 <div class="small-8 cell">
+     		 {{ form.area(type="number", placeholder="Exemplo: 128.45") }}
+
+
+		 </div>
+   		 </div>
+
+
+   		 <div class="grid-x grid-padding-x">
+		 <div class="small-4 cell">
+		
+		 	<label for="middle-label" class="text-right middle"><i class="fas fa-align-justify"></i> Descrição (Opcional):</label>
+    		</div>
+   			 <div class="small-8 cell">
+     		 {{ form.desc(type="text", placeholder="Exemplo: Casa do João") }}
+
+
+		 </div>
+   		 </div>
 
 
 
-		<fieldset class="cell"><i class="fas fa-warehouse"></i>
-			Garagens/Abrigos:
-         {{ form.vagas(type="number", placeholder="Exemplo: 2")}}
-
-		 </fieldset>
-
-
-		<fieldset class="cell"><i class="fas fa-chart-area"></i>
-		Área Total Costruída:
-         {{ form.area(type="number", placeholder="Exemplo: 128.45") }}
-         
-		 </fieldset>
-
-		 <fieldset class="cell"><i class="fas fa-align-justify"></i>
-		Descrição:
-         {{ form.area(type="text", placeholder="Campo Opcional. Ex: casa do joão") }}
-         
-		 </fieldset>
 
 
 		 <fieldset class="cell button-group expanded">
 			
-			<input type="submit" class="button success" value="Nova Consulta">
+			
+			
 			{{ form.submit(class="button warning", value="Gerar Resultado") }}
+
+			
+			
+
+			<a class="button success" href="{{ url_for('sistema') }}">Nova Consulta</a>
 
 		 </fieldset>
 
 	</form>
 
 
+
+
 	<div class="cell small-4 content-section">
-		<h6>Valor estimado: <b>{{ estimado }}</b></h6>
+		 <div class="cell small-12">
+        {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="callout small {{ category }}">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}  
+</div>
+		{% if estimado == 0 %}
+		<p>Seja bem-vindo ao sistema. Para fazer uma blablabal</p>
+		{% else %}
+
+		<h5>Valor estimado: <b>{{ estimado }}</b></h5>
 		<br>
-		<h6>Precisão de: <b>{{ precisao }}</b> </h6>
+		<h6 class="content-section"> Versão atual: <b> 1.0 </b>   |   Precisão de: <b>{{ precisao }}</b> </h6>
 		<br>
+
+		{% endif %}
 
 		{% if estimado != 0 %}
 
@@ -115,6 +146,8 @@
 		<i onclick="satis(this)" class="fa fa-thumbs-up" id="likeBotao"></i>
 
 		<p id="obrigado"></p>
+
+
 
 		<i onclick="impre(this)" class="fa fa-thumbs-down" id="dislikeBotao"></i>
 
@@ -135,11 +168,15 @@
 	</div> <!-- div cell small-4 contente-section-->
 
 	<div class="cell small-4 content-section">
-		<h6>Histórico de Pesquisas</h6>
+		<h6><b>Histórico de Pesquisas</b></h6>
+		
 		<li>aaaa</li>
 		<li>aaaa</li>
 		<li>aaaa</li>
+
+
 	</div>
+
 	
 </div>
 
@@ -153,6 +190,7 @@ function satis() {
     x.innerHTML = "none";
   } else {
 	x.innerHTML =  "<br>" +  "<i class='fas fa-glass-cheers'></i> Obrigado!";
+
 	document.getElementById("dislikeBotao").style.display="none";
   }
  }

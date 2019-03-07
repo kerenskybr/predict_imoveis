@@ -6,7 +6,7 @@ from predictimoveis import db, app
 from predictimoveis.forms import FormRegistro, FormSistema
 from predictimoveis.models import Usuarios, Colaboradores, Consultas, DadosNovos
 
-from flask import render_template, url_for, flash
+from flask import render_template, url_for, flash, redirect
 
 from sklearn.externals import joblib
 from sklearn.metrics import mean_squared_error
@@ -33,7 +33,7 @@ def registro():
 		email = StringField('Email',validators=[DataRequired(), Email()])
 		senha = PasswordField('Senha', validators=[DataRequired()])
 		confirma_senha = PasswordField('Repetir Senha', validators=[DataRequired(), EqualTo('senha')])
-		submit 
+		 
 
 	return render_template("registro.html", form=form)
 
@@ -53,6 +53,15 @@ def sistema():
 	estimado = 0
 
 	precisao = 0
+
+	def clear():
+		dorms = int('')
+		banhos = int('')
+		vagas = int('')
+		area = float('')
+		desc = ''
+
+		return redirect(url_for('sistema'))
 
 	if form.validate_on_submit():
 
