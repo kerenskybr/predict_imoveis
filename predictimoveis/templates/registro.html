@@ -4,62 +4,61 @@
 	<br>
 </div>
 
-	<form method="POST" action="">
+	<form class="cell small-4"  method="POST">
 		{{ form.hidden_tag() }}
-		<div class="grid-x">					
+		<div class="grid-x">	
+
+						
 			<div class="cell auto">
 				
 			</div>
 
 			<div class="cell small-4 content-section">
 			<h4>Registro de Imobiliária</h4>
+		
+			
+			<label>Nome de Usuário
+          	{{ form.nome(type="text", placeholder="Nome Imobiliária, Nome Fantasia, etc") }}
+        	</label>
+		
+
+			<label>Email
+      		{{ form.email(type="email", placeholder="Digite seu email") }}
+    		</label>
+		
+
+			
+			<label>Senha
+      		{{ form.senha(type="password", placeholder="Crie uma senha") }}
+    		</label>
+
+    		<label>Confirmação de senha
+      		{{ form.confirma_senha(type="password", placeholder="Confirme a senha") }}
+    		</label>
+
+			
+    		
 			<fieldset class="cell">
-				<label>Nome de Usuário
-          		<input type="text" placeholder="Nome Fantasia, Nome da Imobiliária">
+			
+			<div class="expanded button-group">
+							
+				{{ form.submit(class="button success", value="Registrar") }}
+
+				<a class="button hollow success" href="{{ url_for('home') }}">Voltar</a>
+
+			</div>
+
+			
+			<small class="text-muted">
+			<p>Já possui conta? <a href="{{ url_for('login') }}">Login</a>
+
+			<p>Conta individual? <a href="#">Registrar</a>
+			</small>
 
 
-
-        		</label>
-				</fieldset>
-
-				<label>Email
-          		<input type="email" placeholder="Coloque seu e-mail">
-  
-
-        		</label>
-				</fieldset>
-
-				<fieldset class="cell">
-				<label>Senha
-          		<input type="password" placeholder="Crie uma senha">
-        		</label>
-
-        		<label>Confirmação de senha
-          		<input type="password" placeholder="Repita a senha criada">
-        		</label>
-
-				</fieldset>
-				
-
-				<fieldset class="cell">
-				
-				<div class="expanded button-group">
-					<input type="submit" class="button success" value="Registrar">					
-
-				<input type="submit" class="button hollow success" value="Voltar">
-				</div>
-
-				
-				<small class="text-muted">
-				<p>Já possui conta? <a href="#">Login</a>
-
-				<p>Conta individual? <a href="#">Registrar</a>
-				</small>
-
-	
-				</fieldset>
-				</div>
-				<div class="cell auto">
+			
+			</div>
+			<div class="cell auto">
 				
 			</div>
 

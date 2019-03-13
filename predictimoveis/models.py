@@ -5,9 +5,10 @@ from flask_login import UserMixin
 
 
 class Usuarios(db.Model, UserMixin):
+
 	__tablename__ = 'usuarios'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	nome = db.Column(db.String(30), unique=True, nullable=False)
+	nome = db.Column(db.String(30), nullable=False)
 	email = db.Column(db.String(120), unique=True, nullable=False)
 	senha = db.Column(db.String(10), nullable=False)
 
@@ -15,6 +16,7 @@ class Usuarios(db.Model, UserMixin):
 		return f"Usuarios('{self.nome}', '{self.email}', '{self.senha}')"
 
 class Colaboradores(db.Model):
+
 	__tablename__ = 'colaboradores'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	nome = db.Column(db.String(30), unique=True, nullable=False)
@@ -25,6 +27,7 @@ class Colaboradores(db.Model):
 		return f"Colaboradores('{self.nome}', '{self.email}', '{self.senha}')"
 
 class Consultas(db.Model):
+
 	__tablename__ = 'consultas'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	dorms = db.Column(db.Integer, nullable=False)
@@ -33,11 +36,17 @@ class Consultas(db.Model):
 	area = db.Column(db.Integer, nullable=False)
 	desc = db.Column(db.String(30), unique=True, nullable=False)
 	data = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+	valor = db.Column(db.String, nullable=False)
+
+	id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+
+	#usuario = db.relationship('Usuario', backref=db.backref('usuarios', lazy=True))
 
 	def _repr__(self):
 		return f"Consultas('{self.dorms}','{self.banhos}','{self.vagas}','{self.area}','{self.desc}','{self.data}')"
 
 class DadosNovos(db.Model):
+
 	__tablename__ = 'dados_novos'
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	bairro = db.Column(db.String(100), nullable=False)

@@ -168,11 +168,49 @@
 	</div> <!-- div cell small-4 contente-section-->
 
 	<div class="cell small-4 content-section">
-		<h6><b>Histórico de Pesquisas</b></h6>
-		
-		<li>aaaa</li>
-		<li>aaaa</li>
-		<li>aaaa</li>
+<table>
+  <thead>
+    <tr>
+      <th width="200">Descrição</th>
+      <th width="80">Dorms.</th>
+      <th width="80">Banhos</th>
+      <th width="80">Vagas</th>
+      <th width="150">Área</th>
+      <th width="150">Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for cons in query %}
+
+    <tr>
+      <td>{{ cons.desc }}</td>
+      <td>{{ cons.dorms }}</td>
+      <td>{{ cons.banhos }}</td>
+      <td>{{ cons.vagas }}</td>
+      <td>{{ cons.area }} m²</td>
+      <td>R$ {{ cons.valor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!--
+
+ <table class="table table-sm">
+          {% for lanc in query_receber_for %}
+           
+            <tr>
+             <th scope="row">
+                <td>  {{ lanc.descreceber }}</td>
+                <td>{{ "R$ {:,.2f}".format(lanc.valorreceber) }}</td>
+              </th>  
+             </tr>   
+           {% endfor %}
+         </table>
+</div>
+
+-->
+
 
 
 	</div>
@@ -209,4 +247,4 @@ function impre() {
 </script>
 	
 		
-	{% endblock content %}
+{% endblock content %}
