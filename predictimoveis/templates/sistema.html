@@ -16,27 +16,27 @@
 
 
 
-<div class="grid-x" >		
-	
-	
-        
-	<form class="cell small-4 content-section"  method="POST">
+<div class="grid-x" >
+
+
+
+	<form class="cell small-3 content-section"  method="POST">
 		{{ form.hidden_tag() }}
-		
+
 
 		<i class="fas fa-city"></i>
 		Cidade
   		<select>
     	<option value="1">Capão da Canoa</option>
-    
+
   		</select>
-		
+
 
 		<h6><b>Digite a quantidade de:</b></h6>
 
 		<div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
-		 	
+
       		<label for="middle-label" class="text-right middle"><i class="fas fa-bed"></i> Dormitórios:</label>
     		</div>
    			 <div class="small-8 cell">
@@ -46,7 +46,7 @@
 
    		 <div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
-		 	
+
       		<label for="middle-label" class="text-right middle"><i class="fas fa-toilet"></i> Banheiros/ Lavabos:</label>
     		</div>
    			 <div class="small-8 cell">
@@ -58,24 +58,24 @@
 
    		 <div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
-		 	
+
       		<label for="middle-label" class="text-right middle"><i class="fas fa-warehouse"></i> Abrigos/ Garagens:</label>
     		</div>
    			 <div class="small-8 cell">
      		 {{ form.vagas(type="number", placeholder="Exemplo: 2") }}
-     		 
-         
+
+
    		 </div>
    		 </div>
 
 
    		  <div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
-		
+
 		 	<label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Área Total Costruída:</label>
     		</div>
    			 <div class="small-8 cell">
-     		 {{ form.area(type="number", placeholder="Exemplo: 128.45") }}
+     		 {{ form.area(type="number", step="0.01", placeholder="Exemplo: 128.45") }}
 
 
 		 </div>
@@ -84,7 +84,7 @@
 
    		 <div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
-		
+
 		 	<label for="middle-label" class="text-right middle"><i class="fas fa-align-justify"></i> Descrição (Opcional):</label>
     		</div>
    			 <div class="small-8 cell">
@@ -99,13 +99,13 @@
 
 
 		 <fieldset class="cell button-group expanded">
-			
-			
-			
+
+
+
 			{{ form.submit(class="button warning", value="Gerar Resultado") }}
 
-			
-			
+
+
 
 			<a class="button success" href="{{ url_for('sistema') }}">Nova Consulta</a>
 
@@ -126,7 +126,7 @@
         </div>
         {% endfor %}
         {% endif %}
-        {% endwith %}  
+        {% endwith %}
 </div>
 		{% if estimado == 0 %}
 		<p>Seja bem-vindo ao sistema. Para fazer uma blablabal</p>
@@ -156,27 +156,27 @@
 			aprenda a emitir dados mais precisos. Obrigado!</small>
 
 			Valor:
-        
+
         <input type="text" placeholder=".medium-6.cell">
 
 
 			Bairro:
-        
+
         <input type="text" placeholder=".medium-6.cell">
         </div>
 		{% endif %}
 	</div> <!-- div cell small-4 contente-section-->
 
-	<div class="cell small-4 content-section">
-<table>
+	<div class="cell small-5 content-section">
+    <h5 class="content-section">Registro de Consultas</h5>
+<table class="hover">
   <thead>
-    <tr>
+    <tr class="text-left">
       <th width="200">Descrição</th>
-      <th width="80">Dorms.</th>
-      <th width="80">Banhos</th>
-      <th width="80">Vagas</th>
       <th width="150">Área</th>
       <th width="150">Valor</th>
+      <th width="80">Data</th>
+      <th width="80">Excluir</th>
     </tr>
   </thead>
   <tbody>
@@ -184,39 +184,21 @@
 
     <tr>
       <td>{{ cons.desc }}</td>
-      <td>{{ cons.dorms }}</td>
-      <td>{{ cons.banhos }}</td>
-      <td>{{ cons.vagas }}</td>
       <td>{{ cons.area }} m²</td>
       <td>R$ {{ cons.valor }}</td>
+      <td>{{ cons.data }}</td>
+      <td class="center"> <i class="fas fa-trash-alt"></i> </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 
-<!--
-
- <table class="table table-sm">
-          {% for lanc in query_receber_for %}
-           
-            <tr>
-             <th scope="row">
-                <td>  {{ lanc.descreceber }}</td>
-                <td>{{ "R$ {:,.2f}".format(lanc.valorreceber) }}</td>
-              </th>  
-             </tr>   
-           {% endfor %}
-         </table>
-</div>
-
--->
-
 
 
 	</div>
 
-	
-</div>
+
+</div> <!-- Grid X -->
 
 <script type="text/javascript">
 
@@ -245,6 +227,6 @@ function impre() {
 
 
 </script>
-	
-		
+
+
 {% endblock content %}

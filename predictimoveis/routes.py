@@ -2,7 +2,7 @@ import os
 import io
 import locale
 
-from flask_login import current_user, logout_user
+from flask_login import current_user, logout_user, login_required, login_user
 
 from predictimoveis import db, app
 from predictimoveis.forms import FormRegistro, FormSistema, FormLogin
@@ -15,10 +15,6 @@ from sklearn.metrics import mean_squared_error
 
 import numpy as np
 
-
-#np.set_printoptions(formatter={'float': '{: 0.2f}'.format})
-
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -28,12 +24,14 @@ def home():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated:
-		return redirect(url_for('sistema.html'))
+		return redirect(url_for('sistema'))
 
 	form = FormLogin()
 	if form.validate_on_submit():
-		nome = Usuarios.query.filter_by(email=form.email.data)
-		return redirect(url_for('sistema'))
+		nome = Usuarios.query.filter_by(email=form.email.data).first()
+		if nome:
+			login_user(nome, remember=form.lembrarme.data)
+			return redirect(url_for('sistema'))
 	else:
 		flash('Erro. Nome de usuário ou senha inválido', 'danger')
 
@@ -46,7 +44,7 @@ def registro():
 	form = FormRegistro()
 
 	if form.validate_on_submit():
-		print('FORM VALIDANNDO PORRA')	 
+
 		grava = Usuarios(nome=form.nome.data, email=form.email.data, senha=form.senha.data)
 
 		db.session.add(grava)
@@ -54,7 +52,7 @@ def registro():
 
 		flash(f'Sua conta foi criada. Você pode agora se logar {form.nome.data}!', 'success')
 
-		return redirect(url_for('home'))
+		return redirect(url_for('login'))
 
 	return render_template("registro.html", title='Registro', form=form)
 
@@ -63,7 +61,7 @@ def registro():
 def logout():
 	logout_user()
 
-	return render_template("home.html")	
+	return render_template("home.html", title="Início")
 '''
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -84,12 +82,12 @@ def login():
 
 
 @app.route("/sistema", methods=['GET', 'POST'])
+#@login_required
 def sistema():
-	current_user = 1
+	query = Consultas.query.filter_by(id_usuario=current_user.id)
 
-	query = Consultas.query.filter_by(id_usuario=current_user).all()
-
-	carrega_modelo = joblib.load(os.path.join(app.root_path, 'saves/modelo_final.sav'))	
+	#Carrega o modelo de machine learning treinado
+	carrega_modelo = joblib.load(os.path.join(app.root_path, 'saves/modelo_final.sav'))
 	medida_x = joblib.load(os.path.join(app.root_path,'saves/x_test.sav'))
 	medida_y = joblib.load(os.path.join(app.root_path,'saves/y_test.sav'))
 
@@ -108,13 +106,13 @@ def sistema():
 		desc = form.desc.data
 
 		areas = [[dorms, banhos, vagas, area]]
-		
+
 		a = carrega_modelo.predict(areas)
 
 		locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-		
+
 		valor = locale.currency(a, grouping=True, symbol=None)
-		
+
 		valor_string = str(valor)
 
 		estimado = ('R$ %s' % valor)
@@ -125,18 +123,17 @@ def sistema():
 		np.sqrt(mse)
 
 		porc = carrega_modelo.score(medida_x, medida_y)
-		
+
 		precisao = format(porc*100, '.2f') + '%'
 		flash(f'Previsão gerada com sucesso!', 'success')
 
 		#Abaixo, grava a consulta efetuada no banco de dados
-		
-		consulta = Consultas(dorms=dorms, banhos=banhos, vagas=vagas, 
-								area=area, desc=desc, valor=valor_string, id_usuario=1)
+
+		consulta = Consultas(dorms=dorms, banhos=banhos, vagas=vagas,area=area,
+								desc=desc, valor=valor_string, id_usuario=1)
 		db.session.add(consulta)
 		db.session.commit()
-		
-
-	return render_template("sistema.html", form=form, estimado=estimado, precisao=precisao, query=query)
 
 
+	return render_template("sistema.html", form=form, estimado=estimado,
+							precisao=precisao, query=query, title='Sistema')

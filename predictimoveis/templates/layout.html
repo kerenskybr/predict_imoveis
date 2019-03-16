@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pt_br">
 <head>
+{% block head %}
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   	<title>Predict-imóveis</title>
+
+		{% if title %}
+ 		<title>Predict-Imóveis {{ title }}</title>
+	 		{% else %}
+ 		<title>Predict-Imóveis</title>
+	 {% endif %}
+
+{% endblock head %}
 <!-- Meu css personalizado -->
 <link rel="stylesheet" href="../static/meu.css" />
 <!-- foundation-float.min.css: Compressed CSS with legacy Float Grid -->
@@ -22,38 +30,43 @@
 </head>
 <body>
 
-<div class="grid-container fluid cor-home">
+<div class="grid-container fluid cor-home text-center">
   <div class="grid-x grid-margin-x">
-    <div class="cell small-3">
-    	
+    <div class="cell small-2">
+
     	Logotipo
 
     </div>
     <div class="cell medium-6">
-    	
+
     	<ul class="menu menu-hover-lines">
-    		
-		  <li><a href="#">Início</a></li> <!-- class="active"-->
-		  <li><a href="#">Funcionamento</a></li>	
+
+		  <li><a href="{{ url_for('home') }}">Início</a></li> <!-- class="active"-->
+		  <li><a href="#">Funcionamento</a></li>
 		  <li><a href="#">Valores</a></li>
 		  <li><a href="#">Contato</a></li>
 		  <li><a href="#">Sobre</a></li>
-		
+
 		</ul>
-		
+
     </div>
 
-    <div class="cell small-3">
-    	<ul class="menu menu-hover-lines">
-    	<li><a href="#">Logado como <b>Fulano</b>, via <b>Imobiliária Tal</b> </a></li>	
+    <div class="cell small-4 ">
+    	<ul class="menu menu-hover-lines ">
+				 {% if current_user.is_authenticated %}
+    	<li><a href="#">Logado como <b>{{ current_user.nome }}</b> </a></li>
+			<li><a href="{{ url_for('logout') }}">Sair </a></li>
+				{% else %}
+				<li><a href="{{ url_for('registro') }}">Registro </a></li>
+				<li><a href="{{ url_for('login') }}">Login </a></li>
+				{% endif %}
 	</ul>
     </div>
   </div>
 </div>
 
+<!--
 
-
-<!-- Inicio flask_messages --
  <div class="cell small-12">
         {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
@@ -63,9 +76,9 @@
         </div>
         {% endfor %}
         {% endif %}
-        {% endwith %}  
+        {% endwith %}
 </div>
-!-- Inicio flask_messages -->
+-->
 {% block content %}
 
 {% endblock content %}
@@ -83,5 +96,3 @@
 
 </body>
 </html>
-
-

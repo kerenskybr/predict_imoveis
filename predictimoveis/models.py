@@ -3,6 +3,10 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from predictimoveis import db, login_manager, app
 from flask_login import UserMixin
 
+@login_manager.user_loader
+def load_user(id_usuario):
+	return Usuarios.query.get(int(id_usuario))
+
 
 class Usuarios(db.Model, UserMixin):
 
@@ -15,6 +19,7 @@ class Usuarios(db.Model, UserMixin):
 	def _repr__(self):
 		return f"Usuarios('{self.nome}', '{self.email}', '{self.senha}')"
 
+
 class Colaboradores(db.Model):
 
 	__tablename__ = 'colaboradores'
@@ -25,6 +30,7 @@ class Colaboradores(db.Model):
 
 	def _repr__(self):
 		return f"Colaboradores('{self.nome}', '{self.email}', '{self.senha}')"
+
 
 class Consultas(db.Model):
 
@@ -44,6 +50,7 @@ class Consultas(db.Model):
 
 	def _repr__(self):
 		return f"Consultas('{self.dorms}','{self.banhos}','{self.vagas}','{self.area}','{self.desc}','{self.data}')"
+
 
 class DadosNovos(db.Model):
 
