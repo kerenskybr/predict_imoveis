@@ -14,15 +14,10 @@
 }
 </style>
 
-
-
 <div class="grid-x" >
-
-
 
 	<form class="cell small-3 content-section"  method="POST">
 		{{ form.hidden_tag() }}
-
 
 		<i class="fas fa-city"></i>
 		Cidade
@@ -30,7 +25,6 @@
     	<option value="1">Capão da Canoa</option>
 
   		</select>
-
 
 		<h6><b>Digite a quantidade de:</b></h6>
 
@@ -94,30 +88,18 @@
 		 </div>
    		 </div>
 
-
-
-
-
 		 <fieldset class="cell button-group expanded">
 
-
-
 			{{ form.submit(class="button warning", value="Gerar Resultado") }}
-
-
-
 
 			<a class="button success" href="{{ url_for('sistema') }}">Nova Consulta</a>
 
 		 </fieldset>
 
 	</form>
-
-
-
-
 	<div class="cell small-4 content-section">
-		 <div class="cell small-12">
+<!--		
+     <div class="cell small-12">
         {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
         {% for category, message in messages %}
@@ -128,8 +110,10 @@
         {% endif %}
         {% endwith %}
 </div>
+-->
 		{% if estimado == 0 %}
-		<p>Seja bem-vindo ao sistema. Para fazer uma blablabal</p>
+		<p>Seja bem-vindo ao sistema. Para fazer uma consulta, selecione a cidade e preencha os campos.</p>
+    <p>Feito isso, basta clicar em <b>"Gerar Resultado"</b> </p>
 		{% else %}
 
 		<h5>Valor estimado: <b>{{ estimado }}</b></h5>
@@ -169,25 +153,33 @@
 
 	<div class="cell small-5 content-section">
     <h5 class="content-section">Registro de Consultas</h5>
+
 <table class="hover">
   <thead>
-    <tr class="text-left">
-      <th width="200">Descrição</th>
-      <th width="150">Área</th>
-      <th width="150">Valor</th>
-      <th width="80">Data</th>
-      <th width="80">Excluir</th>
+    <tr >
+      <th width="200" class="text-center">Descrição</th>
+      <th width="140" class="text-center">Área</th>
+      <th width="160" class="text-center">Valor</th>
+      <th width="80" class="text-center">Data</th>
+      <th width="80" class="text-center">Excluir</th>
     </tr>
   </thead>
   <tbody>
   	{% for cons in query %}
 
+
+
     <tr>
-      <td>{{ cons.desc }}</td>
-      <td>{{ cons.area }} m²</td>
-      <td>R$ {{ cons.valor }}</td>
-      <td>{{ cons.data }}</td>
-      <td class="center"> <i class="fas fa-trash-alt"></i> </td>
+      <td width="200">{{ cons.desc }}</td>
+      <td width="140" class="text-right">{{ "{:,.2f}".format(cons.area) }} m²</td>
+      <td width="160">R$ {{ cons.valor }}</td>
+      <td width="80">{{ cons.data.strftime('%d/%m/%Y') }}</td>
+      <td width="80" class="text-center"> 
+        
+        <a class="fas fa-trash-alt" href="{{ url_for('deletar', item_id=cons.id) }}" method="POST"></a>
+
+        
+      </td>
     </tr>
     {% endfor %}
   </tbody>

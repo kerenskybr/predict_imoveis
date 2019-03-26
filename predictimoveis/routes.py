@@ -109,6 +109,8 @@ def sistema():
 
 		a = carrega_modelo.predict(areas)
 
+		a = a.round()
+
 		locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 		valor = locale.currency(a, grouping=True, symbol=None)
@@ -137,3 +139,18 @@ def sistema():
 
 	return render_template("sistema.html", form=form, estimado=estimado,
 							precisao=precisao, query=query, title='Sistema')
+
+
+@app.route("/sistema/<item_id>/deletar", methods=['GET', 'POST'])
+#@login_required
+def deletar(item_id):
+	query = Consultas.query.get_or_404(item_id)
+	'''
+	if query.id_usuario != current_user:
+		abort(403)
+	'''
+	db.session.delete(query)
+	db.session.commit()
+	flash('Apagado com sucesso', 'success')
+
+	return redirect(url_for('sistema'))
