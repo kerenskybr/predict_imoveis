@@ -79,7 +79,7 @@
    		 <div class="grid-x grid-padding-x">
 		 <div class="small-4 cell">
 
-		 	<label for="middle-label" class="text-right middle"><i class="fas fa-align-justify"></i> Descrição (Opcional):</label>
+		 	<label for="middle-label" class="text-right middle"><i class="fas fa-align-justify"></i> Descrição:</label>
     		</div>
    			 <div class="small-8 cell">
      		 {{ form.desc(type="text", placeholder="Exemplo: Casa do João") }}
@@ -88,18 +88,24 @@
 		 </div>
    		 </div>
 
-		 <fieldset class="cell button-group expanded">
+		 <div class="cell button-group expanded">
 
-			{{ form.submit(class="button warning", value="Gerar Resultado") }}
+			{{ form.submit(class="button success", value="Gerar Resultado") }}
 
-			<a class="button success" href="{{ url_for('sistema') }}">Nova Consulta</a>
+			<a class="button warning" href="{{ url_for('sistema') }}">Nova Consulta</a>
 
-		 </fieldset>
+		 </div>
 
 	</form>
+
+
+
+
 	<div class="cell small-4 content-section">
-<!--		
-     <div class="cell small-12">
+
+
+
+ <div class="cell small-4">
         {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages %}
         {% for category, message in messages %}
@@ -110,7 +116,8 @@
         {% endif %}
         {% endwith %}
 </div>
--->
+
+
 		{% if estimado == 0 %}
 		<p>Seja bem-vindo ao sistema. Para fazer uma consulta, selecione a cidade e preencha os campos.</p>
     <p>Feito isso, basta clicar em <b>"Gerar Resultado"</b> </p>

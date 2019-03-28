@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+.fa {
+  font-size: 25px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: green;
+}
+</style>
+<div class="cell">
+	<br>
+</div>
+
+<div class="grid-x" >		
+	<div class="cell auto">
+		
+	</div>			
+	
+        
+	<form class="cell small-3 content-section"  method="POST">
+		{{ form.hidden_tag() }}
+		
+
+		<i class="fas fa-city"></i>
+		Cidade
+  		<select>
+    	<option value="husker">Capão da Canoa</option>
+    
+  		</select>
+		
+
+		<h6><b>Digite a quantidade de:</b></h6>
+
+		<fieldset class="cell small-1">
+		<i class="fas fa-bed"></i>
+		Dormitórios:
+         
+         {{ form.dorms(type="text", placeholder="Exemplo: 4") }}
+        
+		 </fieldset>
+
+
+		<fieldset class="cell">
+		<i class="fas fa-toilet"></i>
+        Banheiros/Lavabos:
+         {{ form.banhos(type="text", placeholder="Exemplo: 2") }}
+         
+		 </fieldset>
+
+
+		<fieldset class="cell">
+			<i class="fas fa-warehouse"></i>
+			Garagens/Abrigos:
+         {{ form.vagas(type="text", placeholder="Exemplo: 2")}}
+
+		 </fieldset>
+
+
+		<fieldset class="cell">
+		<i class="fas fa-chart-area"></i>
+		Área Total Costruída:
+         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
+         
+		 </fieldset>
+
+
+		 <fieldset class="cell">
+		 	
+		 	{{ form.submit(class="button expanded secondary", value="Gerar Resultado") }}
+		 </fieldset>
+
+	</form>
+
+
+	<div class="cell small-3 content-section">
+		<h6>Valor estimado: <b>{{ estimado }}</b></h6>
+		<br>
+		<h6>Precisão de: <b>{{ precisao }}</b> </h6>
+		<br>
+
+		{% if estimado != 0 %}
+
+		<h6>O que achou do resultado?</h6>
+
+		<i onclick="satis(this)" class="fa fa-thumbs-up" id="likeBotao"></i>
+
+		<p id="obrigado"></p>
+
+		<i onclick="impre(this)" class="fa fa-thumbs-down" id="dislikeBotao"></i>
+
+		<div id="dislike">
+			<small>Por favor, preencha os valores abaixo. Assim você estará colaborando para que o sistema
+			aprenda a emitir dados mais precisos. Obrigado!</small>
+
+			Valor:
+        
+        <input type="text" placeholder=".medium-6.cell">
+
+
+			Bairro:
+        
+        <input type="text" placeholder=".medium-6.cell">
+        </div>
+		{% endif %}
+	</div> <!-- div cell small-4 contente-section-->
+
+	<div class="cell small-3 content-section">
+		<h6>Histórico de Pesquisas</h6>
+		<li>aaaa</li>
+		<li>aaaa</li>
+		<li>aaaa</li>
+	</div>
+
+	<div class="cell auto">
+
+	</div>	
+</div>
+
+<script type="text/javascript">
+
+document.getElementById("dislike").style.display="none";
+
+function satis() {
+  var x = document.getElementById("obrigado");
+    if (x.innerHTML === "none") {
+    x.innerHTML = "none";
+  } else {
+	x.innerHTML =  "<br>" +  "<i class='fas fa-glass-cheers'></i> Obrigado!";
+	document.getElementById("dislikeBotao").style.display="none";
+  }
+ }
+
+function impre() {
+  var x = document.getElementById("dislikeBotao");
+    if (x.innerHTML === "none") {
+    x.innerHTML = "none";
+  } else {
+	document.getElementById("dislike").style.display="block";
+	document.getElementById("likeBotao").style.display="none";
+  }
+ }
+
+
+</script>
+{% endblock content %}
+
+<!--
+
+document.getElementById("your form id").style.display="none";
+
+
+document.getElementById("your form id").style.display="block";
+
+
+function asd(a)
+{
+    if(a==1)
+    document.getElementById("asd").style.display="none";
+    else
+    document.getElementById("asd").style.display="block";
+}
+
+	<div class="cell large-3"> 
+	  	<fieldset class="cell">
+		<i class="fas fa-chart-area"></i>
+		Área Total Costruída:
+         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
+		 </fieldset>
+		 	  	<fieldset class="cell">
+		<i class="fas fa-chart-area"></i>
+		Área Total Costruída:
+         {{ form.area(type="text", placeholder="Exemplo: 128.45") }}
+		 </fieldset>
+	  	</div>
+
+
+
+<form id="asd">form </form>
+<button onclick="asd(1)">Hide</button>
+<button onclick="asd(2)">Show</button>

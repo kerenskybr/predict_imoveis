@@ -48,8 +48,15 @@
 		  <li><a href="#">Sobre</a></li>
 
 		</ul>
+        <ul>
+            
 
+        </ul>
     </div>
+
+
+
+
 
     <div class="cell small-4 ">
     	<ul class="menu menu-hover-lines ">
@@ -66,18 +73,6 @@
 </div>
 
 
-
- <div class="cell small-12">
-        {% with messages = get_flashed_messages(with_categories = true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="callout small {{ category }}">
-          {{ message }}
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-</div>
 
 {% block content %}
 

@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="cell">
+	<br>
+</div>
+
+	<form class="cell small-4"  method="POST">
+		{{ form.hidden_tag() }}
+		<div class="grid-x">
+
+
+			<div class="cell auto">
+
+			</div>
+
+			<div class="cell small-4 content-section">
+			<h4>Login de Imobiliária</h4>
+
+
+			<label>Email
+      		{{ form.email(type="email", placeholder="Digite seu email") }}
+    		</label>
+
+
+
+			<label>Senha
+      		{{ form.senha(type="password", placeholder="Crie uma senha") }}
+    		</label>
+
+
+
+			<fieldset class="cell">
+
+			<div class="expanded button-group">
+
+				{{ form.submit(class="button success", value="Login") }}
+
+				<a class="button hollow success" href="{{ url_for('home') }}">Voltar</a>
+
+			</div>
+
+
+			<small class="text-muted">
+			<p>Já possui conta? <a href="{{ url_for('login') }}">Login</a>
+
+			<p>Conta individual? <a href="#">Registrar</a>
+			</small>
+
+
+
+			</div>
+			<div class="cell auto">
+
+			</div>
+
+		</div>
+	</form>
+{% endblock content %}

@@ -15,6 +15,7 @@ from sklearn.metrics import mean_squared_error
 
 import numpy as np
 
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -127,7 +128,7 @@ def sistema():
 		porc = carrega_modelo.score(medida_x, medida_y)
 
 		precisao = format(porc*100, '.2f') + '%'
-		flash(f'Previsão gerada com sucesso!', 'success')
+		flash(f'Resultado gerado com sucesso!', 'success')
 
 		#Abaixo, grava a consulta efetuada no banco de dados
 
@@ -151,6 +152,6 @@ def deletar(item_id):
 	'''
 	db.session.delete(query)
 	db.session.commit()
-	flash('Apagado com sucesso', 'success')
+	flash('Apagado com sucesso', 'warning')
 
 	return redirect(url_for('sistema'))
