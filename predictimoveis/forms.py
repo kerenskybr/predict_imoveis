@@ -20,7 +20,6 @@ class FormLogin(FlaskForm):
 	lembrarme = BooleanField('Lembre-me')
 	submit = SubmitField('Logar')
 
-
 class FormSistema(FlaskForm):
 	dorms = IntegerField('Dormitórios', validators=[DataRequired()])
 	banhos = IntegerField('Banhos', validators=[DataRequired()])

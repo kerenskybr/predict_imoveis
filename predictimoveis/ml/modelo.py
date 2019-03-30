@@ -13,10 +13,7 @@ medida_y = joblib.load('../saves/y_test.sav')
 dorms = int(input('Digite a quantidade de dormitórios: '))
 banho = int(input('Digite a quantidade de banhos: '))
 vagas = int(input('Digite a quantidade de vagas para carros: '))
-#bairro = int(input('Digite o bairro: '))
 area = int(input('Digite area total da residência: '))
-#banhos = float(input('Digite a quantidade de banheiros: ')) #whhhhhyyyyyyyyy???
-#area_fundos = int(input('Digite a area de pátio dos fundos: '))
 
 #Prevendo com entrada manual
 

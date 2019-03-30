@@ -63,23 +63,6 @@ def logout():
 	logout_user()
 
 	return render_template("home.html", title="Início")
-'''
-
-@app.route("/login", methods=['GET', 'POST'])
-def login():
-	if current_user.is_authenticated:
-		return redirect(url_for('sistema'))
-	formulario = FormDeLogin()
-	if formulario.validate_on_submit():
-		nome = Usuario.query.filter_by(email=formulario.email.data).first()
-		if nome and bcrypt.check_password_hash(nome.senha, formulario.senha.data):
-			login_user(nome, remember=formulario.lembrarme.data)
-			return redirect(url_for('sistema'))
-		else:
-			flash('Erro. Nome de usuario ou senha inválido.', 'danger')
-	return render_template('login.html', title='login', formulario=formulario)
-
-'''
 
 
 @app.route("/sistema", methods=['GET', 'POST'])
