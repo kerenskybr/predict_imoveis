@@ -21,6 +21,10 @@ import numpy as np
 def home():
 	return render_template("home.html")
 
+@app.route("/contato")
+def contato():
+	return render_template("contato.html")
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -116,7 +120,7 @@ def sistema():
 		#Abaixo, grava a consulta efetuada no banco de dados
 
 		consulta = Consultas(dorms=dorms, banhos=banhos, vagas=vagas,area=area,
-								desc=desc, valor=valor_string, id_usuario=1)
+								desc=desc, valor=valor_string, id_usuario=current_user.id)
 		db.session.add(consulta)
 		db.session.commit()
 
@@ -129,10 +133,10 @@ def sistema():
 #@login_required
 def deletar(item_id):
 	query = Consultas.query.get_or_404(item_id)
-	'''
-	if query.id_usuario != current_user:
+	
+	if query.id_usuario != current_user.id:
 		abort(403)
-	'''
+	
 	db.session.delete(query)
 	db.session.commit()
 	flash('Apagado com sucesso', 'warning')

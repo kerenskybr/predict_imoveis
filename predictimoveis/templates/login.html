@@ -24,7 +24,7 @@
 
 
 			<label>Senha
-      		{{ form.senha(type="password", placeholder="Crie uma senha") }}
+      		{{ form.senha(type="password", placeholder="Digite sua senha") }}
     		</label>
 
 
@@ -41,7 +41,7 @@
 
 
 			<small class="text-muted">
-			<p>Já possui conta? <a href="{{ url_for('login') }}">Login</a>
+			<p>Novo por aqui? <a href="{{ url_for('registro') }}">Registro Imobiliária</a>
 
 			<p>Conta individual? <a href="#">Registrar</a>
 			</small>
@@ -56,3 +56,4 @@
 		</div>
 	</form>
 {% endblock content %}
+

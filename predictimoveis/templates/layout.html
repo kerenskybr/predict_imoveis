@@ -30,27 +30,22 @@
 </head>
 <body>
 
-<div class="grid-container fluid cor-home text-center">
+<div class="grid-container fluid cor-home">
   <div class="grid-x grid-margin-x">
-    <div class="cell small-2">
-
-    	Logotipo
+    <div class="cell medium-4">
+        <br>
+    	<img src="../static/images/logo.png">
 
     </div>
-    <div class="cell medium-6">
 
-    	<ul class="menu menu-hover-lines">
+    <div class="cell medium-4">
 
-		  <li><a href="{{ url_for('home') }}">Início</a></li> <!-- class="active"-->
-		  <li><a href="#">Funcionamento</a></li>
-		  <li><a href="#">Valores</a></li>
-		  <li><a href="#">Contato</a></li>
-		  <li><a href="#">Sobre</a></li>
-
-		</ul>
-        <ul>
-            
-
+        <ul class="menu menu-fancy">
+          <li class="menu-fancy-option1 is-selected"><a href="{{ url_for('home') }}">INÍCIO</a></li>
+          <li class="menu-fancy-option2"><a href="#">FUNCIONAMENTO</a></li>
+          <li class="menu-fancy-option3"><a href="#">PLANOS</a></li>
+          <li class="menu-fancy-option4"><a href="#">CONTATO</a>
+          </li>
         </ul>
     </div>
 
@@ -58,7 +53,7 @@
 
 
 
-    <div class="cell small-4 ">
+    <div class="cell medium-4 ">
     	<ul class="menu menu-hover-lines ">
 				 {% if current_user.is_authenticated %}
     	<li><a href="#">Logado como <b>{{ current_user.nome }}</b> </a></li>
@@ -88,6 +83,17 @@
       $(document).foundation();
     </script>
 
+<script type="text/javascript">
+    var $navList = $('.menu-fancy');
+
+$navList.on('click', 'li:not(.is-selected)', function(e){
+  $navList.find(".is-selected").removeClass("is-selected");
+  $(e.currentTarget).addClass("is-selected");
+});
+
+
+
+</script>
 
 </body>
 </html>
