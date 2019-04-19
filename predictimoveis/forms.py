@@ -28,3 +28,9 @@ class FormSistema(FlaskForm):
 	valor = StringField('Valor')
 	desc = StringField('Descrição')
 	submit = SubmitField('Calcular')
+
+class FormDeAtualizarConta(FlaskForm):
+	nome = StringField('Nome de Usuario', validators=[DataRequired(), Length(min=2, max=20)])
+	email = StringField('Email', validators=[DataRequired(), Email()])
+	imagem = FileField('Atualizar Imagem da Conta.', validators=[FileAllowed(['jpg', 'png'])])
+	submit = SubmitField('Atualizar')

@@ -7,7 +7,6 @@ from flask_login import UserMixin
 def load_user(id_usuario):
 	return Usuarios.query.get(int(id_usuario))
 
-
 class Usuarios(db.Model, UserMixin):
 
 	__tablename__ = 'usuarios'
@@ -15,9 +14,10 @@ class Usuarios(db.Model, UserMixin):
 	nome = db.Column(db.String(30), nullable=False)
 	email = db.Column(db.String(120), unique=True, nullable=False)
 	senha = db.Column(db.String(10), nullable=False)
+	imagem_perfil = db.Column(db.String(20), nullable=False, default='default.jpg')
 
 	def _repr__(self):
-		return f"Usuarios('{self.nome}', '{self.email}', '{self.senha}')"
+		return f"Usuarios('{self.nome}', '{self.email}', '{self.senha}', '{self.imagem_perfil}')"
 
 
 class Colaboradores(db.Model):

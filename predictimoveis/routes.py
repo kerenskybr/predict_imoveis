@@ -68,6 +68,39 @@ def logout():
 
 	return render_template("home.html", title="Início")
 
+def salva_imagem(form_picture):
+	random_hex = secrets.token_hex(8)
+	_, f_ext = os.path.splitext(form_picture.filename)
+	picture_fn = random_hex + f_ext
+	picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+
+	output_size = (125, 125) #redimensionando imagens salva espaço e ganha performance
+	i = Image.open(form_picture)
+	i.thumbnail(output_size)
+	i.save(picture_path)
+
+	return picture_fn
+
+@app.route("/minha_conta", methods=['GET', 'POST'])
+@login_required
+def minha_conta():
+	form = FormDeAtualizarConta()
+	if form.validate_on_submit():
+		if form.imagem.data:
+			arquivo_imagem = salva_imagem(form.imagem.data)
+			current_user.imagem_perfil = arquivo_imagem
+		current_user.nome = form.nome.data
+		current_user.email = form.email.data
+		db.session.commit()
+		flash('Sua conta foi atualizada com sucesso.', 'success')
+		return redirect(url_for('minha_conta'))
+
+	elif request.method == 'GET':
+		form.nome.data = current_user.nome
+		form.email.data = current_user.email
+	imagem_perfil = url_for('static', filename='profile_pics/' + current_user.imagem_perfil)
+	return render_template('minha_conta.html', title='Minha Conta', imagem_perfil=imagem_perfil, form=form)
+
 
 @app.route("/sistema", methods=['GET', 'POST'])
 #@login_required

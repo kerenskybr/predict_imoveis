@@ -172,27 +172,19 @@
     </tr>
   </thead>
   <tbody>
-  	{% for cons in query %}
-
-
-
+  	{% for cons in query[-11:] %}
     <tr>
       <td width="200">{{ cons.desc }}</td>
       <td width="140" class="text-right">{{ "{:,.2f}".format(cons.area) }} m²</td>
       <td width="160">R$ {{ cons.valor }}</td>
       <td width="80">{{ cons.data.strftime('%d/%m/%Y') }}</td>
       <td width="80" class="text-center"> 
-        
-        <a class="fas fa-trash-alt" href="{{ url_for('deletar', item_id=cons.id) }}" method="POST"></a>
-
-        
+        <a class="fas fa-trash-alt" href="{{ url_for('deletar', item_id=cons.id) }}" method="POST"></a>      
       </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
-
-
 
 	</div>
 
