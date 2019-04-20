@@ -34,3 +34,20 @@ class FormDeAtualizarConta(FlaskForm):
 	email = StringField('Email', validators=[DataRequired(), Email()])
 	imagem = FileField('Atualizar Imagem da Conta.', validators=[FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Atualizar')
+
+class FormDadosNovos(FlaskForm):
+	bairro = StringField('Bairro/Distrito', validators=[DataRequired(), Length(min=2, max=20)])
+	cidade = StringField('Cidade', validators=[DataRequired(), Length(min=2, max=20)])
+	cond = StringField('Condomínio')
+	valor = StringField('Valor')
+	submit = SubmitField('Enviar')
+	'''
+	bairro = db.Column(db.String(100), nullable=False)
+	dorms = db.Column(db.Integer, nullable=False)
+	banhos = db.Column(db.Integer, nullable=False)
+	vagas = db.Column(db.Integer, nullable=False)
+	area = db.Column(db.Integer, nullable=False)
+	cond =  db.Column(db.String(10), nullable=False)
+	valor = db.Column(db.Integer, nullable=False)
+	cidade = db.Column(db.String(60), nullable=False)
+	'''

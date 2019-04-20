@@ -98,12 +98,7 @@
 
 	</form>
 
-
-
-
 	<div class="cell small-4 content-section">
-
-
 
  <div class="cell small-4">
         {% with messages = get_flashed_messages(with_categories = true) %}
@@ -142,21 +137,63 @@
 
 		<i onclick="impre(this)" class="fa fa-thumbs-down" id="dislikeBotao"></i>
 
+    <form class="cell small-3 content-section"  method="POST">
+    {{ form_novo.hidden_tag() }} 
+
 		<div id="dislike">
 			<small>Por favor, preencha os valores abaixo. Assim você estará colaborando para que o sistema
 			aprenda a emitir dados mais precisos. Obrigado!</small>
 
-			Valor:
+			 <div class="grid-x grid-padding-x">
+         <div class="small-4 cell">
+          <label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Bairro:</label>
+            </div>
+             <div class="small-8 cell">
+             {{ form_novo.bairro(type="text", placeholder="Bairro/Distrito") }}
+            </div>
+          </div>
 
-        <input type="text" placeholder=".medium-6.cell">
+          <div class="grid-x grid-padding-x">
+         <div class="small-4 cell">
+          <label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Cidade:</label>
+            </div>
+             <div class="small-8 cell">
+             {{ form_novo.cidade(type="text", placeholder="Cidade") }}
+            </div>
+          </div>
+
+          <div class="grid-x grid-padding-x">
+         <div class="small-4 cell">
+          <label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Condomínio:</label>
+            </div>
+             <div class="small-8 cell">
+             {{ form_novo.cond(type="text", placeholder="Condomínio") }}
+            </div>
+          </div>
+
+          <div class="grid-x grid-padding-x">
+         <div class="small-4 cell">
+          <label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Valor:</label>
+            </div>
+             <div class="small-8 cell">
+             {{ form_novo.valor(type="text", placeholder="Novo Valor") }}
+            </div>
+          </div>
+
+               <div class="cell button-group expanded">
+
+            {{ form_novo.submit(class="button success", value="Enviar Atualização") }}
+
+     </div>
 
 
-			Bairro:
 
-        <input type="text" placeholder=".medium-6.cell">
         </div>
+      </form>
 		{% endif %}
 	</div> <!-- div cell small-4 contente-section-->
+
+
 
 	<div class="cell small-5 content-section">
     <h5 class="content-section">Registro de Consultas</h5>

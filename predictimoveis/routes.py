@@ -5,7 +5,7 @@ import locale
 from flask_login import current_user, logout_user, login_required, login_user
 
 from predictimoveis import db, app
-from predictimoveis.forms import FormRegistro, FormSistema, FormLogin
+from predictimoveis.forms import FormRegistro, FormSistema, FormLogin, FormDadosNovos
 from predictimoveis.models import Usuarios, Colaboradores, Consultas, DadosNovos
 
 from flask import render_template, url_for, flash, redirect
@@ -114,6 +114,10 @@ def sistema():
 
 	form = FormSistema()
 
+	form_novo = FormDadosNovos()
+
+	like = True
+
 	estimado = 0
 
 	precisao = 0
@@ -157,8 +161,12 @@ def sistema():
 		db.session.add(consulta)
 		db.session.commit()
 
+	elif like == False:
 
-	return render_template("sistema.html", form=form, estimado=estimado,
+		print('LIKE', like)
+
+
+	return render_template("sistema.html", form=form, form_novo=form_novo, estimado=estimado,
 							precisao=precisao, query=query, title='Sistema')
 
 
