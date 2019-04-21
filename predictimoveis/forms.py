@@ -26,7 +26,7 @@ class FormSistema(FlaskForm):
 	vagas = IntegerField('Vagas', validators=[DataRequired()])
 	area = FloatField('Área Total', validators=[DataRequired()])
 	valor = StringField('Valor')
-	desc = StringField('Descrição')
+	descr = StringField('Descrição')
 	submit = SubmitField('Calcular')
 
 class FormDeAtualizarConta(FlaskForm):

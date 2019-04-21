@@ -82,7 +82,7 @@
 		 	<label for="middle-label" class="text-right middle"><i class="fas fa-align-justify"></i> Descrição:</label>
     		</div>
    			 <div class="small-8 cell">
-     		 {{ form.desc(type="text", placeholder="Exemplo: Casa do João") }}
+     		 {{ form.descr(type="text", placeholder="Exemplo: Casa do João") }}
 
 
 		 </div>
@@ -196,8 +196,8 @@
 
 
 	<div class="cell small-5 content-section">
-    <h5 class="content-section">Registro de Consultas</h5>
-
+    <h5 class="content-section">Registro de Consultas  </h5>
+      <a class="button" href="#"> Ver Todos</a>
 <table class="hover">
   <thead>
     <tr >
@@ -209,9 +209,9 @@
     </tr>
   </thead>
   <tbody>
-  	{% for cons in query[-11:] %}
+  	{% for cons in query[-10:] %}
     <tr>
-      <td width="200">{{ cons.desc }}</td>
+      <td width="200">{{ cons.descr }}</td>
       <td width="140" class="text-right">{{ "{:,.2f}".format(cons.area) }} m²</td>
       <td width="160">R$ {{ cons.valor }}</td>
       <td width="80">{{ cons.data.strftime('%d/%m/%Y') }}</td>

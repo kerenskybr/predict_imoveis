@@ -40,7 +40,7 @@ class Consultas(db.Model):
 	banhos = db.Column(db.Integer, nullable=False)
 	vagas = db.Column(db.Integer, nullable=False)
 	area = db.Column(db.Integer, nullable=False)
-	desc = db.Column(db.String(30), unique=True, nullable=False)
+	descr = db.Column(db.String(30), nullable=False)
 	data = db.Column(db.Date, nullable=False, default=datetime.utcnow)
 	valor = db.Column(db.String, nullable=False)
 
@@ -60,9 +60,9 @@ class DadosNovos(db.Model):
 	dorms = db.Column(db.Integer, nullable=False)
 	banhos = db.Column(db.Integer, nullable=False)
 	vagas = db.Column(db.Integer, nullable=False)
-	area = db.Column(db.Integer, nullable=False)
+	area = db.Column(db.Float, nullable=False)
 	cond =  db.Column(db.String(10), nullable=False)
-	valor = db.Column(db.Integer, nullable=False)
+	valor = db.Column(db.String(10), nullable=False)
 	cidade = db.Column(db.String(60), nullable=False)
 
 	def _repr__(self):

@@ -15,6 +15,11 @@ from sklearn.metrics import mean_squared_error
 
 import numpy as np
 
+from sqlalchemy import desc, select, table, column
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import scoped_session,sessionmaker
+from zope.sqlalchemy import ZopeTransactionExtension
+
 
 @app.route("/")
 @app.route("/home")
@@ -128,7 +133,8 @@ def sistema():
 		banhos = int(form.banhos.data)
 		vagas = int(form.vagas.data)
 		area = float(form.area.data)
-		desc = form.desc.data
+		descr = form.descr.data
+
 
 		areas = [[dorms, banhos, vagas, area]]
 
@@ -144,7 +150,6 @@ def sistema():
 
 		estimado = ('R$ %s' % valor)
 
-
 		mse = mean_squared_error(medida_y, carrega_modelo.predict(medida_x))
 
 		np.sqrt(mse)
@@ -156,15 +161,30 @@ def sistema():
 
 		#Abaixo, grava a consulta efetuada no banco de dados
 
-		consulta = Consultas(dorms=dorms, banhos=banhos, vagas=vagas,area=area,
-								desc=desc, valor=valor_string, id_usuario=current_user.id)
+		consulta = Consultas(dorms=dorms, banhos=banhos, vagas=vagas, area=area,
+								descr=descr, valor=valor_string, id_usuario=current_user.id)
 		db.session.add(consulta)
 		db.session.commit()
 
-	elif like == False:
 
-		print('LIKE', like)
+	elif form_novo.validate_on_submit():
 
+		ultimo = Consultas.query.order_by(Consultas.id.desc())
+		query_dados = ultimo.first()
+
+		dorm_novo = int(query_dados.dorms)
+		banho_novo = int(query_dados.banhos)
+		vaga_novo = int(query_dados.vagas)
+		area_novo = float(query_dados.area)
+
+
+		dados_novos = DadosNovos(bairro=form_novo.bairro.data, dorms=dorm_novo, banhos=banho_novo, vagas=vaga_novo, area=area_novo,
+									cond=form_novo.cond.data, valor=form_novo.valor.data, cidade=form_novo.cidade.data)
+
+		db.session.add(dados_novos)
+		db.session.commit()
+
+		flash(f'Dados recebidos, Obrigado!', 'success')
 
 	return render_template("sistema.html", form=form, form_novo=form_novo, estimado=estimado,
 							precisao=precisao, query=query, title='Sistema')
