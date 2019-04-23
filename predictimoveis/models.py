@@ -39,7 +39,7 @@ class Consultas(db.Model):
 	dorms = db.Column(db.Integer, nullable=False)
 	banhos = db.Column(db.Integer, nullable=False)
 	vagas = db.Column(db.Integer, nullable=False)
-	area = db.Column(db.Integer, nullable=False)
+	area = db.Column(db.Float, nullable=False)
 	descr = db.Column(db.String(30), nullable=False)
 	data = db.Column(db.Date, nullable=False, default=datetime.utcnow)
 	valor = db.Column(db.String, nullable=False)
