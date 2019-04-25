@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="cell small-5 content-section">
+    <h5 class="content-section">Registro de Consultas  </h5>
+      <a class="button" href="{{ url_for('sistema') }}"> Voltar</a>
+<table class="hover">
+  <thead>
+    <tr >
+      <th width="200" class="text-center">Id</th>
+      <th width="200" class="text-center">Dormitórios</th>
+      <th width="200" class="text-center">Banhos</th>
+      <th width="200" class="text-center">Vagas</th>
+      <th width="200" class="text-center">Descrição</th>
+      <th width="140" class="text-center">Área</th>
+      <th width="160" class="text-center">Valor</th>
+      <th width="80" class="text-center">Data</th>
+      <th width="80" class="text-center">Excluir</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for cons in query %}
+    <tr>
+      <td width="80" class="text-center">{{ cons.id }}</td>
+      <td width="80" class="text-center">{{ cons.dorms }}</td>
+      <td width="80" class="text-center">{{ cons.banhos }}</td>
+      <td width="80" class="text-center">{{ cons.vagas }}</td>
+      <td width="200" class="text-center">{{ cons.descr }}</td>
+      <td width="200" class="text-center">{{ "{:,.2f}".format(cons.area) }} m²</td>
+      <td width="200" class="text-center">R$ {{ cons.valor }}</td>
+      <td width="150" class="text-center">{{ cons.data.strftime('%d/%m/%Y') }}</td>
+      <td width="80" class="text-center"> 
+        <a class="fas fa-trash-alt" href="{{ url_for('deletar', item_id=cons.id) }}" method="POST"></a>      
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+	</div>
+
+{% endblock content %}

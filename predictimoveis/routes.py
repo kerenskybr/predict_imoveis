@@ -203,3 +203,11 @@ def deletar(item_id):
 	flash('Apagado com sucesso', 'warning')
 
 	return redirect(url_for('sistema'))
+
+@app.route("/sistema/consultas", methods=['GET', 'POST'])
+def consultas():
+
+	query = Consultas.query.filter_by(id_usuario=current_user.id)
+
+
+	return render_template("consultas.html", query=query, title="Consultas")
