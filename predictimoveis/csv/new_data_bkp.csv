@@ -147,7 +147,6 @@ dorms,banho,vagas,bairro,area,valor
 6,3,4,girassol,200,1500000
 3,1,1,zonanova,250,1150000
 4,3,2,girassol,170,595000
-3,3,2,zonanova,590000
 3,2,2,santoantonio,150,550000
 3,2,1,zonanova,150,550000
 3,2,2,zonanova,137,480000
@@ -192,7 +191,6 @@ dorms,banho,vagas,bairro,area,valor
 4,4,2,cond,224,1100000
 3,4,3,cond,170,640000
 4,5,2,cond,196,870000
-3,4,2,zonanova,800000
 4,5,2,zonanova,210,2900000
 3,3,4,centro,143,420000
 4,5,2,cond,189,850000
@@ -1019,7 +1017,7 @@ dorms,banho,vagas,bairro,area,valor
 2,1,0,centro,96,280000
 2,1,1,centro,102,223000
 2,2,1,centro,159,424000
-3,2,0,centro70,320000
+3,2,0,centro,70,320000
 2,1,0,centro,71,178000
 3,2,1,centro,198,490000
 2,1,0,centro,100,190000
@@ -1052,7 +1050,6 @@ dorms,banho,vagas,bairro,area,valor
 2,1,0,centro,98,220000
 4,2,1,centro,135,400000
 3,1,1,arroioteixeira,140,224000
-3,3,3,zonanova,599000
 3,2,1,centro,102,790000
 2,2,0,centro,65,250000
 3,2,2,centro,110,320000
