@@ -14,6 +14,21 @@ class FormRegistro(FlaskForm):
 	confirma_senha = PasswordField('Repetir Senha', validators=[DataRequired(), EqualTo('senha')])
 	submit = SubmitField('Registrar')
 
+#Validação para verificar se o usuario ja existe
+def validate_username(self, nome):
+    
+    usuario = Usuarios.query.filter_by(nome=nome.data).first()
+
+    if usuario:
+        raise ValidationError("Esse nome de usuario já existe. Favor escolha outro.")
+
+def validate_email(self, email):
+    
+    usuario = Usuarios.query.filter_by(email=email.data).first()
+
+    if usuario:
+        raise ValidationError("Esse email já foi usado. Favor escolha outro.") 
+
 class FormLogin(FlaskForm):
 	email = StringField('Email',validators=[DataRequired(), Email()])
 	senha = PasswordField('Senha', validators=[DataRequired()])

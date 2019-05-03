@@ -1,23 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="cell">
-	<br>
+    <br>
 </div>
 
-	<form class="cell small-4"  method="POST">
-		{{ form.hidden_tag() }}
-		<div class="grid-x">	
+    <form class="cell small-4"  method="POST">
+        {{ form.hidden_tag() }}
+        <div class="grid-x">    
 
-						
-			<div class="cell auto">
-				
-			</div>
+                        
+            <div class="cell auto">
+                
+            </div>
 
-			<div class="cell small-4 content-section">
-			<h4>Registro de Imobiliária</h4>
-		
-			
-			<label>Nome de Usuário
+            <div class="cell small-4 content-section">
+            <h4>Registro de Imobiliária</h4>
+        
+            
+            <label>Nome de Usuário
                     {% if form.nome.errors %} <!-- se o form for preenchido errado, exibe erro-->
                         {{ form.nome(class="form-control form-control-sm is-invalid") }}
                         <div class="invalid-feedback">
@@ -31,11 +31,11 @@
 
             </label>
 
-			<label>Email
-      		{{ form.email(type="email", placeholder="Digite seu email") }}
-    		</label>
-		
-    		<label>Senha
+            <label>Email
+            {{ form.email(type="email", placeholder="Digite seu email") }}
+            </label>
+        
+            <label>Senha
                     {% if form.senha.errors %} <!-- se o form for preenchido errado, exibe erro-->
                         {{ form.senha(class="form-control form-control-sm is-invalid") }}
                         <div class="invalid-feedback">
@@ -49,7 +49,7 @@
 
             </label>
 
-    		<label>Confirmação de senha
+            <label>Confirmação de senha
                     {% if form.confirma_senha.errors %} <!-- se o form for preenchido errado, exibe erro-->
                         {{ form.confirma_senha(class="form-control form-control-sm is-invalid") }}
                         <div class="invalid-feedback">
@@ -63,32 +63,32 @@
 
             </label>
 
-			
-    		
-			<fieldset class="cell">
-			
-			<div class="expanded button-group">
-							
-				{{ form.submit(class="button success", value="Registrar") }}
+            
+            
+            <fieldset class="cell">
+            
+            <div class="expanded button-group">
+                            
+                {{ form.submit(class="button success", value="Registrar") }}
 
-				<a class="button hollow success" href="{{ url_for('home') }}">Voltar</a>
+                <a class="button hollow success" href="{{ url_for('home') }}">Voltar</a>
 
-			</div>
+            </div>
 
-			
-			<small class="text-muted">
-			<p>Já possui conta? <a href="{{ url_for('login') }}">Login</a>
+            
+            <small class="text-muted">
+            <p>Já possui conta? <a href="{{ url_for('login') }}">Login</a>
 
-			<p>Conta individual? <a href="#">Registrar</a>
-			</small>
+            <p>Conta individual? <a href="#">Registrar</a>
+            </small>
 
 
-			
-			</div>
-			<div class="cell auto">
-				
-			</div>
+            
+            </div>
+            <div class="cell auto">
+                
+            </div>
 
-		</div>
-	</form>
+        </div>
+    </form>
 {% endblock content %}

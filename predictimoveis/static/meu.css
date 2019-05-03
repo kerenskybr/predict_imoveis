@@ -1,74 +1,29 @@
-/*Codigo do menu*/
-.menu-hover-lines {
-  text-align: center;
-  text-transform: uppercase;
+
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
   font-weight: 500;
-  letter-spacing: 1px;
-  transition: all 0.35s ease;
 }
 
-.menu-hover-lines li a {
-  padding: 0.75rem 0;
-  color: rgba(10, 10, 10, 0.5);
-  position: relative;
-  margin-left: 1rem;
-}
-
-.menu-hover-lines li:first-child a {
-  margin-left: 0;
-}
-
-.menu-hover-lines li.active > a {
-  background-color: transparent;
-}
-
-.menu-hover-lines a:before,
-.menu-hover-lines a::after {
-  height: 3px;
-  position: absolute;
-  content: '';
-  transition: all 0.35s ease;
-  background-color: #00cc44;
-  width: 0;
-}
-
-.menu-hover-lines a::before {
-  top: 0;
-  left: 0;
-}
-
-.menu-hover-lines a::after {
-  bottom: 0;
-  right: 0;
-}
-
-.menu-hover-lines a:hover,
-.menu-hover-lines li.active > a {
-  color: #0a0a0a;
-  transition: all 0.35s ease;
-}
-
-.menu-hover-lines a:hover::before,
-.menu-hover-lines .active a::before,
-.menu-hover-lines a:hover::after,
-.menu-hover-lines .active a::after {
-  width: 100%;
-}
-
-/*Codigo do Footer*/
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #c2f0c2;
-  color: white;
-  text-align: center;
-}
-/*Estilos Pagina HOME*/
-.cor-home{
-	background-color: #c2f0c2;
-}
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
@@ -76,6 +31,60 @@
   border-radius: 3px;
   margin-bottom: 20px;
 }
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 25px;
+  width: 25px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.imagem-redonda {
+  border-radius: 50%;
+  padding: 5px;
+  width: 25px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
 
 
 /*Estilos pagina de contato*/
@@ -184,110 +193,5 @@
 
 .contact-us-list .phone::before {
   content: '\f098';
-}
-
-/*Estilo Menu*/
-
-
-
-.menu-fancy li {
-  position: relative;
-  margin: 0 5px;
-}
-
-.menu-fancy li a {
-  padding: 0.5rem 0;
-  color: #8a8a8a;
-}
-
-.menu-fancy li:after,
-.menu-fancy li:before,
-.menu-fancy a:before,
-.menu-fancy a:after {
-  position: absolute;
-  content: '';
-  border-radius: 4px;
-}
-
-.menu-fancy li:after,
-.menu-fancy li:before {
-  bottom: -4px;
-  height: 4px;
-}
-
-.menu-fancy li:not(.is-selected):before {
-  left: 0;
-  right: -2px;
-}
-
-.menu-fancy li.is-selected:after {
-  left: 0;
-  right: 39px;
-}
-
-.menu-fancy li.is-selected:before {
-  right: -2px;
-  width: 13px;
-}
-
-.menu-fancy .is-selected a:before {
-  height: 22px;
-  width: 4px;
-  bottom: -22px;
-  right: 7px;
-}
-
-.menu-fancy .is-selected a:after {
-  height: 4px;
-  width: 40px;
-  bottom: -13px;
-  right: 5px;
-  -webkit-transform: rotate(30deg);
-      -ms-transform: rotate(30deg);
-          transform: rotate(30deg);
-}
-
-.menu-fancy .menu-fancy-option1 a:hover {
-  color: #009933;
-}
-
-.menu-fancy .menu-fancy-option1:after,
-.menu-fancy .menu-fancy-option1:before,
-.menu-fancy .menu-fancy-option1 a:after,
-.menu-fancy .menu-fancy-option1 a:before {
-  background-color: #009933;
-}
-
-.menu-fancy .menu-fancy-option2 a:hover {
-  color: #00b33c;
-}
-
-.menu-fancy .menu-fancy-option2:after,
-.menu-fancy .menu-fancy-option2:before,
-.menu-fancy .menu-fancy-option2 a:after,
-.menu-fancy .menu-fancy-option2 a:before {
-  background-color: #00b33c;
-}
-
-.menu-fancy .menu-fancy-option3 a:hover {
-  color: #00cc44;
-}
-
-.menu-fancy .menu-fancy-option3:after,
-.menu-fancy .menu-fancy-option3:before,
-.menu-fancy .menu-fancy-option3 a:after,
-.menu-fancy .menu-fancy-option3 a:before {
-  background-color: #00cc44;
-}
-
-.menu-fancy .menu-fancy-option4 a:hover {
-  color: #00e64d;
-}
-
-.menu-fancy .menu-fancy-option4:after,
-.menu-fancy .menu-fancy-option4:before,
-.menu-fancy .menu-fancy-option4 a:after,
-.menu-fancy .menu-fancy-option4 a:before {
-  background-color: #00e64d;
 }
 

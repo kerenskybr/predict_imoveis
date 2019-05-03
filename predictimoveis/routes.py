@@ -8,7 +8,7 @@ from predictimoveis import db, app
 from predictimoveis.forms import FormRegistro, FormSistema, FormLogin, FormDadosNovos
 from predictimoveis.models import Usuarios, Colaboradores, Consultas, DadosNovos
 
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 
 from sklearn.externals import joblib
 from sklearn.metrics import mean_squared_error
@@ -89,7 +89,7 @@ def salva_imagem(form_picture):
 @app.route("/minha_conta", methods=['GET', 'POST'])
 @login_required
 def minha_conta():
-	form = FormDeAtualizarConta()
+	form = FormRegistro()
 	if form.validate_on_submit():
 		if form.imagem.data:
 			arquivo_imagem = salva_imagem(form.imagem.data)
