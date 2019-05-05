@@ -127,6 +127,7 @@ def sistema():
 
 	precisao = 0
 
+
 	if form.validate_on_submit():
 
 		dorms = int(form.dorms.data)
@@ -134,7 +135,7 @@ def sistema():
 		vagas = int(form.vagas.data)
 		area = float(form.area.data)
 		descr = form.descr.data
-
+		cidade = request.form.get('seletor_cidade')
 
 		areas = [[dorms, banhos, vagas, area]]
 
@@ -162,7 +163,7 @@ def sistema():
 		#Abaixo, grava a consulta efetuada no banco de dados
 
 		consulta = Consultas(dorms=dorms, banhos=banhos, vagas=vagas, area=area,
-								descr=descr, valor=valor_string, id_usuario=current_user.id)
+								descr=descr, valor=valor_string, id_usuario=current_user.id, cidade=cidade)
 		db.session.add(consulta)
 		db.session.commit()
 
@@ -176,10 +177,14 @@ def sistema():
 		banho_novo = int(query_dados.banhos)
 		vaga_novo = int(query_dados.vagas)
 		area_novo = float(query_dados.area)
+		cond = request.form.get('seletor_condicao')
+		cidade_novo = query_dados.cidade
 
+		print('COND', cond)
+		print('CIDADE 2', cidade_novo)
 
-		dados_novos = DadosNovos(bairro=form_novo.bairro.data, dorms=dorm_novo, banhos=banho_novo, vagas=vaga_novo, area=area_novo,
-									cond=form_novo.cond.data, valor=form_novo.valor.data, cidade=form_novo.cidade.data)
+		dados_novos = DadosNovos(bairro=form_novo.bairro.data, dorms=dorm_novo, banhos=banho_novo, vagas=vaga_novo, 
+									area=area_novo, cond=cond, valor=form_novo.valor.data, cidade=cidade_novo)
 
 		db.session.add(dados_novos)
 		db.session.commit()

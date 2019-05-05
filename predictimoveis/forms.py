@@ -52,10 +52,10 @@ class FormDeAtualizarConta(FlaskForm):
 
 class FormDadosNovos(FlaskForm):
 	bairro = StringField('Bairro/Distrito', validators=[DataRequired(), Length(min=2, max=20)])
-	cidade = StringField('Cidade', validators=[DataRequired(), Length(min=2, max=20)])
-	cond = StringField('Condomínio')
+	cond = StringField('Condicao')
 	valor = StringField('Valor')
 	submit = SubmitField('Enviar')
+	#cidade = StringField('Cidade', validators=[DataRequired(), Length(min=2, max=20)])
 	'''
 	bairro = db.Column(db.String(100), nullable=False)
 	dorms = db.Column(db.Integer, nullable=False)

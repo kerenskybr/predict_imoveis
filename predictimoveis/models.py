@@ -43,6 +43,7 @@ class Consultas(db.Model):
 	descr = db.Column(db.String(30), nullable=False)
 	data = db.Column(db.Date, nullable=False, default=datetime.utcnow)
 	valor = db.Column(db.String, nullable=False)
+	cidade = db.Column(db.String(60), nullable=True) # Mudar para false depois
 
 	id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 

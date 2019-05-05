@@ -21,8 +21,8 @@
 
 		<i class="fas fa-city"></i>
 		Cidade
-  		<select>
-    	<option value="1">Capão da Canoa</option>
+  		<select name="seletor_cidade" class="selectpicker form-control">
+    	<option name='cidade1' value="capao">Capão da Canoa</option>
 
   		</select>
 
@@ -145,19 +145,16 @@
 
           <div class="grid-x grid-padding-x">
          <div class="small-4 cell">
-          <label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Cidade:</label>
+          <label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Condição:</label>
             </div>
              <div class="small-8 cell">
-             {{ form_novo.cidade(type="text", placeholder="Cidade") }}
-            </div>
-          </div>
 
-          <div class="grid-x grid-padding-x">
-         <div class="small-4 cell">
-          <label for="middle-label" class="text-right middle"><i class="fas fa-chart-area"></i> Condomínio:</label>
-            </div>
-             <div class="small-8 cell">
-             {{ form_novo.cond(type="text", placeholder="Condomínio") }}
+              <select name="seletor_condicao" class="selectpicker form-control">
+                <option name="boa" value="0">Boa</option>
+                <option name="regular" value="1">Regular</option>
+                <option name="ruim" value="2">Ruim</option>
+              </select>
+
             </div>
           </div>
 
