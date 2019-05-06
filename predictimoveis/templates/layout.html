@@ -28,11 +28,6 @@
 
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-robot.png') }}">
 
-<style type="text/css">
-  .imagem-redonda{
-    border-radius: 50%;
-  }
-</style>
 </head>
 
 <body>
@@ -77,17 +72,11 @@
         </ul>
     </div>
 
-
-
     <div class="top-bar-right">
         <ul class="menu">
           {% if current_user.is_authenticated %}
-            <li>
-              
-            <img class="imagem-redonda" src="{{ url_for('static', filename='profile_pics/' + current_user.imagem_perfil) }}" width="40" height="40" >
-
-            </li>
-
+            
+             <img src="{{ url_for('static', filename='profile_pics/' + current_user.imagem_perfil) }}" style= "border-radius: 50%; width: 40px; height:40px;"> </img>
  
             <li> <b> <a class="text-secondary"> {{ current_user.nome }} </a></b></li>
             <li><a href="{{ url_for('minha_conta') }}">MINHA CONTA</a></li>

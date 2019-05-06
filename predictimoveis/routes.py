@@ -6,7 +6,7 @@ from flask_login import current_user, logout_user, login_required, login_user
 
 from predictimoveis import db, app
 from predictimoveis.forms import FormRegistro, FormSistema, FormLogin, FormDadosNovos
-from predictimoveis.models import Usuarios, Colaboradores, Consultas, DadosNovos
+from predictimoveis.models import Usuarios, Consultas, DadosNovos
 
 from flask import render_template, url_for, flash, redirect, request
 
@@ -91,8 +91,8 @@ def salva_imagem(form_picture):
 def minha_conta():
 	form = FormRegistro()
 	if form.validate_on_submit():
-		if form.imagem.data:
-			arquivo_imagem = salva_imagem(form.imagem.data)
+		if form.imagem_perfil.data:
+			arquivo_imagem = salva_imagem(form.imagem_perfil.data)
 			current_user.imagem_perfil = arquivo_imagem
 		current_user.nome = form.nome.data
 		current_user.email = form.email.data
@@ -103,7 +103,7 @@ def minha_conta():
 	elif request.method == 'GET':
 		form.nome.data = current_user.nome
 		form.email.data = current_user.email
-	imagem_perfil = url_for('static', filename='profile_pics/' + current_user.imagem_perfil)
+		imagem_perfil = url_for('static', filename='profile_pics/' + current_user.imagem_perfil)
 	return render_template('minha_conta.html', title='Minha Conta', imagem_perfil=imagem_perfil, form=form)
 
 

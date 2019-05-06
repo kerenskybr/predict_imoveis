@@ -12,6 +12,7 @@ class FormRegistro(FlaskForm):
 	email = StringField('Email',validators=[DataRequired(), Email()])
 	senha = PasswordField('Senha', validators=[DataRequired()])
 	confirma_senha = PasswordField('Repetir Senha', validators=[DataRequired(), EqualTo('senha')])
+	imagem_perfil = FileField('Atualizar Imagem da Conta.', validators=[FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Registrar')
 
 #Validação para verificar se o usuario ja existe
@@ -47,7 +48,7 @@ class FormSistema(FlaskForm):
 class FormDeAtualizarConta(FlaskForm):
 	nome = StringField('Nome de Usuario', validators=[DataRequired(), Length(min=2, max=20)])
 	email = StringField('Email', validators=[DataRequired(), Email()])
-	imagem = FileField('Atualizar Imagem da Conta.', validators=[FileAllowed(['jpg', 'png'])])
+	imagem_perfil = FileField('Atualizar Imagem da Conta.', validators=[FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Atualizar')
 
 class FormDadosNovos(FlaskForm):

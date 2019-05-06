@@ -13,11 +13,25 @@
                 
             </div>
 
+
+
             <div class="cell small-4 content-section">
-            <h4>Registro de Imobiliária</h4>
-        
+            <h4>Alterar dados Cadastrados</h4>
+             <img src="{{ imagem_perfil }}" style= "border-radius: 50%; width: 140px; height:140px;"> </img>
+
+             <label>Alterar Imagem
+    
+
+                
+
+{{ form.imagem_perfil(for="exampleFileUpload", type="file") }}
+
+<input type="file" id="exampleFileUpload" class="show-for-sr">
+
+            </label>
+
             
-            <label>Nome de Usuário
+            <label>Alterar Usuário
                     {% if form.nome.errors %} <!-- se o form for preenchido errado, exibe erro-->
                         {{ form.nome(class="form-control form-control-sm is-invalid") }}
                         <div class="invalid-feedback">
@@ -35,7 +49,7 @@
             {{ form.email(type="email", placeholder="Digite seu email") }}
             </label>
         
-            <label>Senha
+            <label>Nova Senha
                     {% if form.senha.errors %} <!-- se o form for preenchido errado, exibe erro-->
                         {{ form.senha(class="form-control form-control-sm is-invalid") }}
                         <div class="invalid-feedback">
@@ -69,19 +83,11 @@
             
             <div class="expanded button-group">
                             
-                {{ form.submit(class="button success", value="Registrar") }}
+                {{ form.submit(class="button success", value="Alterar") }}
 
-                <a class="button hollow success" href="{{ url_for('home') }}">Voltar</a>
+                <a class="button hollow success" href="{{ url_for('home') }}">Cancelar</a>
 
             </div>
-
-            
-            <small class="text-muted">
-            <p>Já possui conta? <a href="{{ url_for('login') }}">Login</a>
-
-            <p>Conta individual? <a href="#">Registrar</a>
-            </small>
-
 
             
             </div>
