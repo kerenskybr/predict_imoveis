@@ -12,7 +12,7 @@ class FormRegistro(FlaskForm):
 	email = StringField('Email',validators=[DataRequired(), Email()])
 	senha = PasswordField('Senha', validators=[DataRequired()])
 	confirma_senha = PasswordField('Repetir Senha', validators=[DataRequired(), EqualTo('senha')])
-	imagem_perfil = FileField('Atualizar Imagem da Conta.', validators=[FileAllowed(['jpg', 'png'])])
+	#imagem_perfil = FileField('Atualizar Imagem da Conta.', validators=[FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Registrar')
 
 #Validação para verificar se o usuario ja existe

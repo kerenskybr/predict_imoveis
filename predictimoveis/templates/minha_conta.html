@@ -4,7 +4,7 @@
     <br>
 </div>
 
-    <form class="cell small-4"  method="POST">
+    <form class="cell small-4"  method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <div class="grid-x">    
 
@@ -17,18 +17,16 @@
 
             <div class="cell small-4 content-section">
             <h4>Alterar dados Cadastrados</h4>
-             <img src="{{ imagem_perfil }}" style= "border-radius: 50%; width: 140px; height:140px;"> </img>
+             <img src="{{ imagem_perfil }}" style= "border-radius: 50%; width: 125px; height:125px;"> </img>
 
              <label>Alterar Imagem
-    
+         </label>
+               
+                <label for="exampleFileUpload" class="button success">Escolher Imagem</label>
 
-                
+                {{ form.imagem_perfil(type="file", id="exampleFileUpload", class="show-for-sr") }}
 
-{{ form.imagem_perfil(for="exampleFileUpload", type="file") }}
-
-<input type="file" id="exampleFileUpload" class="show-for-sr">
-
-            </label>
+           
 
             
             <label>Alterar Usuário
@@ -48,34 +46,7 @@
             <label>Email
             {{ form.email(type="email", placeholder="Digite seu email") }}
             </label>
-        
-            <label>Nova Senha
-                    {% if form.senha.errors %} <!-- se o form for preenchido errado, exibe erro-->
-                        {{ form.senha(class="form-control form-control-sm is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.senha.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.senha(type="password", placeholder="Crie uma senha") }}
-                    {% endif %}
 
-            </label>
-
-            <label>Confirmação de senha
-                    {% if form.confirma_senha.errors %} <!-- se o form for preenchido errado, exibe erro-->
-                        {{ form.confirma_senha(class="form-control form-control-sm is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.confirma_senha.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.confirma_senha(type="password", placeholder="Confirme a senha") }}
-                    {% endif %}
-
-            </label>
 
             
             

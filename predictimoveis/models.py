@@ -13,7 +13,7 @@ class Usuarios(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	nome = db.Column(db.String(30), nullable=False)
 	email = db.Column(db.String(120), unique=True, nullable=False)
-	senha = db.Column(db.String(10), nullable=False)
+	senha = db.Column(db.String(60), nullable=False)
 	imagem_perfil = db.Column(db.String(20), nullable=False, default='default.jpg')
 
 	def _repr__(self):

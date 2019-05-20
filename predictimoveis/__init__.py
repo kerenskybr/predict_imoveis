@@ -2,6 +2,8 @@ import os
 
 from flask import Flask
 
+from flask_bcrypt import Bcrypt
+
 from flask_login import LoginManager
 
 from flask_sqlalchemy import SQLAlchemy
@@ -18,6 +20,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///predict_imoveis"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+
 
 db.create_all()
 

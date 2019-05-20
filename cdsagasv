@@ -1,0 +1,17 @@
+                                     Table "public.consultas"
+   Column   |         Type          | Collation | Nullable |                Default                
+------------+-----------------------+-----------+----------+---------------------------------------
+ id         | integer               |           | not null | nextval('consultas_id_seq'::regclass)
+ dorms      | integer               |           | not null | 
+ banhos     | integer               |           | not null | 
+ vagas      | integer               |           | not null | 
+ area       | integer               |           | not null | 
+ descr      | character varying(30) |           | not null | 
+ data       | date                  |           | not null | 
+ valor      | character varying     |           | not null | 
+ id_usuario | integer               |           | not null | 
+Indexes:
+    "consultas_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "consultas_id_usuario_fkey" FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+
