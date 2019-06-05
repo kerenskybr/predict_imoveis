@@ -67,3 +67,6 @@ class FormDadosNovos(FlaskForm):
 	valor = db.Column(db.Integer, nullable=False)
 	cidade = db.Column(db.String(60), nullable=False)
 	'''
+class FormBusca(FlaskForm):
+	palavra_chave = StringField()
+	submit = SubmitField('Buscar')

@@ -3,12 +3,14 @@ import io
 import locale
 import secrets
 
+import re
+
 from PIL import Image
 
 from flask_login import current_user, logout_user, login_required, login_user
 
 from predictimoveis import db, app, bcrypt
-from predictimoveis.forms import FormRegistro, FormSistema, FormLogin, FormDadosNovos, FormDeAtualizarConta
+from predictimoveis.forms import FormRegistro, FormSistema, FormLogin, FormDadosNovos, FormDeAtualizarConta, FormBusca
 from predictimoveis.models import Usuarios, Consultas, DadosNovos
 
 from flask import render_template, url_for, flash, redirect, request
@@ -42,11 +44,11 @@ def login():
 	form = FormLogin()
 	if form.validate_on_submit():
 		nome = Usuarios.query.filter_by(email=form.email.data).first()
-		if nome:
+		if nome and bcrypt.check_password_hash(nome.senha, form.senha.data):
 			login_user(nome, remember=form.lembrarme.data)
 			return redirect(url_for('sistema'))
-	else:
-		flash('Erro. Nome de usuário ou senha inválido', 'danger')
+		else:
+			flash('Erro. Nome de usuário ou senha inválido', 'alert')
 
 	return render_template("login.html", title='Login', form=form)
 
@@ -82,6 +84,7 @@ def salva_imagem(form_picture):
 	_, f_ext = os.path.splitext(form_picture.filename)
 	picture_fn = random_hex + f_ext
 	picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+	
 
 	output_size = (125, 125) #redimensionando imagens salva espaço e ganha performance
 	i = Image.open(form_picture)
@@ -114,7 +117,7 @@ def minha_conta():
 
 
 @app.route("/sistema", methods=['GET', 'POST'])
-#@login_required
+@login_required
 def sistema():
 	query = Consultas.query.filter_by(id_usuario=current_user.id)
 
@@ -186,9 +189,6 @@ def sistema():
 		cond = request.form.get('seletor_condicao')
 		cidade_novo = query_dados.cidade
 
-		print('COND', cond)
-		print('CIDADE 2', cidade_novo)
-
 		dados_novos = DadosNovos(bairro=form_novo.bairro.data, dorms=dorm_novo, banhos=banho_novo, vagas=vaga_novo, 
 									area=area_novo, cond=cond, valor=form_novo.valor.data, cidade=cidade_novo)
 
@@ -202,7 +202,7 @@ def sistema():
 
 
 @app.route("/sistema/<item_id>/deletar", methods=['GET', 'POST'])
-#@login_required
+@login_required
 def deletar(item_id):
 	query = Consultas.query.get_or_404(item_id)
 	
@@ -222,3 +222,17 @@ def consultas():
 
 
 	return render_template("consultas.html", query=query, title="Consultas")
+
+@app.route("/busca", methods=['GET', 'POST'])
+def busca():
+	form = FormBusca()
+
+	palavra_chave = 'maria'
+
+	regex = re.findall(r'.maria', palavra_chave)
+
+	query = Consultas.query.filter(Consultas.descr == regex)
+
+	#filter(Employee.name == 'dilbert'
+
+	return render_template("busca.html", query=query, form=form, title="Consultas")

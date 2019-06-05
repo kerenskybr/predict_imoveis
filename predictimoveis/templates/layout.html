@@ -30,12 +30,29 @@
 
 </head>
 
+<style>
+.top-bar {
+  background-color: #C1FFC1;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #C1FFC1;
+  color: black;
+  text-align: center;
+}
+
+</style>
+
 <body>
 
 
 <div class="top-bar">
-    <div class="top-bar-left">
-        <ul class="menu">
+    <div class="bg-steel top-bar-left">
+        <ul class="menu" style="background-color: #C1FFC1;">
             <li href="{{ url_for('home') }}"><img src="../static/images/logo.png"></li>
 
              {% if current_user.is_authenticated %}
@@ -54,7 +71,7 @@
     </div>
 
     <div class="top-bar-left">
-        <ul class="menu">
+        <ul class="menu" style="background-color: #C1FFC1;">
             <li> 
               <div class="cell small-4">
                 {% with messages = get_flashed_messages(with_categories = true) %}
@@ -73,7 +90,7 @@
     </div>
 
     <div class="top-bar-right">
-        <ul class="menu">
+        <ul class="menu" style="background-color: #C1FFC1;">
           {% if current_user.is_authenticated %}
             
              <img src="{{ url_for('static', filename='profile_pics/' + current_user.imagem_perfil) }}" style= "border-radius: 50%; width: 40px; height:40px;"> </img>
@@ -103,4 +120,9 @@
       $(document).foundation();
 </script>
 </body>
+
+<div class="footer">
+  <p>@2019 - Predict Imóveis - Todos direitos reservados.</p>
+</div>
+
 </html>
